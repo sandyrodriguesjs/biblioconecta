@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { Search, Filter } from "lucide-react";
+import BookCard, { Book } from "@/app/components/bookCard";
 import NavBar from "../../components/navBar";
 import SideBar from "../../components/sideBar";
 import BookModal from "@/app/components/bookModal";
