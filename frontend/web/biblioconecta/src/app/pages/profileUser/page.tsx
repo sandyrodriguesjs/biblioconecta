@@ -65,7 +65,7 @@ export default function PerfilUsuarioPage() {
       <div className="flex-1 flex flex-col ml-20">
         <NavBar />
 
-        <main className="flex-1 p-8">
+        <main className="ml-56 flex-1 p-8">
           <h1 className="text-3xl font-bold text-blue-600 text-center mb-10">
             Perfil do Usuário
           </h1>
