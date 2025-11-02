@@ -14,9 +14,6 @@ export default function SideBar() {
           <Link href="./homePage" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
             <Home size={20} /> Home
           </Link>
-          <Link href="/search" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
-            <Search size={20} /> Procurar
-          </Link>
           <Link href="/bookmarks" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
             <Bookmark size={20} /> Marcações
           </Link>
