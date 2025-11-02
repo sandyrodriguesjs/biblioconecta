@@ -1,9 +1,11 @@
 "use client";
-import BookCard, { Book } from "@/app/components/bookCard";
+
+import { useState } from "react";
+import { Filter } from "lucide-react";
 import NavBar from "../../components/navBar";
 import SideBar from "../../components/sideBar";
+import BookCard, { Book } from "@/app/components/bookCard";
 import BookModal from "@/app/components/bookModal";
-import { useState } from "react";
 
 const livros: Book[] = [
   {
@@ -16,8 +18,7 @@ const livros: Book[] = [
     ano_publicacao: "2025",
     categoria: "Popular",
     imagem: "https://placehold.co/200x300?text=A+arte+de+viver",
-    sinopse:
-      "Um guia sobre o significado da vida e a busca por equilíbrio interior.",
+    sinopse: "Um guia sobre o significado da vida e a busca por equilíbrio interior.",
     avaliacao: 5,
     comentarios: [
       {
@@ -53,8 +54,7 @@ const livros: Book[] = [
     ano_publicacao: "2019",
     categoria: "História",
     imagem: "https://placehold.co/200x300?text=Biblia",
-    sinopse:
-      "Coleção de livros sagrados e históricos da tradição judaico-cristã.",
+    sinopse: "Coleção de livros sagrados e históricos da tradição judaico-cristã.",
     avaliacao: 4,
     comentarios: [],
     disponivel: false,
@@ -107,40 +107,153 @@ const livros: Book[] = [
 ];
 
 export default function HomePage() {
+  // ====== STATES ======
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [termo, setTermo] = useState("");
+  const [mostrarFiltros, setMostrarFiltros] = useState(false);
+  const [titulo, setTitulo] = useState("");
+  const [autor, setAutor] = useState("");
+  const [assuntosSelecionados, setAssuntosSelecionados] = useState<string[]>([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
+
+  const assuntos = ["Drama", "Filosofia", "Biologia", "Romance", "História", "Matemática"];
+
+  // ====== FUNÇÕES ======
+  const alternarAssunto = (assunto: string) => {
+    setAssuntosSelecionados((prev) =>
+      prev.includes(assunto) ? prev.filter((a) => a !== assunto) : [...prev, assunto]
+    );
+  };
+
+  // ====== FILTRO ======
+  const livrosFiltrados = livros.filter((livro) => {
+    const termoLower = termo.toLowerCase();
+    const correspondeTermo =
+      livro.titulo.toLowerCase().includes(termoLower) ||
+      livro.autor.toLowerCase().includes(termoLower) ||
+      livro.isbn.toLowerCase().includes(termoLower);
+
+    const correspondeTitulo = titulo
+      ? livro.titulo.toLowerCase().includes(titulo.toLowerCase())
+      : true;
+
+    const correspondeAutor = autor
+      ? livro.autor.toLowerCase().includes(autor.toLowerCase())
+      : true;
+
+    const correspondeCategoria = categoriaSelecionada
+      ? livro.categoria === categoriaSelecionada
+      : true;
+
+    // (opcional) se no futuro os livros tiverem "assunto", dá pra filtrar aqui também
+
+    return correspondeTermo && correspondeTitulo && correspondeAutor && correspondeCategoria;
+  });
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen bg-[#f5f8ff]">
       <SideBar />
       <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="ml-56 flex-1 p-8 bg-[#f5f8ff]">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">Biblioteca</h1>
+        <main className="ml-56 flex-1 p-8">
 
-          {/* Categorias */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8">
-            {["Popular", "História", "Ciência", "Ação e Aventura"].map(
-              (cat) => (
-                <button
-                  key={cat}
-                  className="px-5 py-2 bg-white border border-gray-300 rounded-full shadow-sm 
-                 hover:bg-blue-100 hover:border-blue-400 transition text-gray-800 font-semibold"
-                >
-                  {cat}
-                </button>
-              )
-            )}
+          {/* 🔍 Busca principal */}
+          <div className="flex justify-center items-center gap-2 mb-8">
+            <input
+              type="text"
+              placeholder="Buscar por título, autor ou ISBN..."
+              value={termo}
+              onChange={(e) => setTermo(e.target.value)}
+              className="w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              onClick={() => setMostrarFiltros((prev) => !prev)}
+              className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition"
+              type="button"
+            >
+              <Filter className="w-5 h-5" />
+            </button>
           </div>
 
-          {/* Livros */}
+          {/* 🔽 Filtros avançados */}
+          {mostrarFiltros && (
+            <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6 mb-10">
+              {/* Título */}
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Título</label>
+                <input
+                  type="text"
+                  value={titulo}
+                  onChange={(e) => setTitulo(e.target.value)}
+                  placeholder="Digite o título..."
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              {/* Autor */}
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Autor</label>
+                <input
+                  type="text"
+                  value={autor}
+                  onChange={(e) => setAutor(e.target.value)}
+                  placeholder="Digite o autor..."
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              {/* Assuntos */}
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">Assunto</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {assuntos.map((assunto) => (
+                    <button
+                      key={assunto}
+                      type="button"
+                      onClick={() => alternarAssunto(assunto)}
+                      className={`px-3 py-2 rounded-full border ${
+                        assuntosSelecionados.includes(assunto)
+                          ? "bg-blue-500 text-white border-blue-600"
+                          : "bg-gray-100 text-gray-700 border-gray-300"
+                      } hover:bg-blue-100 transition`}
+                    >
+                      {assunto}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 🔹 Categorias */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {["Popular", "História", "Ciência", "Ação e Aventura"].map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() =>
+                  setCategoriaSelecionada((prev) => (prev === cat ? "" : cat))
+                }
+                className={`px-5 py-2 rounded-full border font-semibold transition ${
+                  categoriaSelecionada === cat
+                    ? "bg-blue-500 text-white border-blue-600"
+                    : "bg-white border-gray-300 text-gray-800 hover:bg-blue-100"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* 📚 Lista de Livros */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {livros.map((livro) => (
+            {livrosFiltrados.map((livro) => (
               <BookCard key={livro.id} book={livro} onClick={setSelectedBook} />
             ))}
           </div>
 
-          {/* Modal de detalhes */}
+          {/* 🪟 Modal */}
           <BookModal
             isOpen={!!selectedBook}
             book={selectedBook}
