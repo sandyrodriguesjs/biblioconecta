@@ -3,7 +3,7 @@ import { CreateBookService } from "../services/CreateBookService";
 
 export class CreateBookController {
   async handle(req: Request, res: Response): Promise<void> {
-    const { isbn, titulo, autor, editora, ano_publicacao, sinopse } = req.body;
+    const { isbn, titulo, autor, categoria, editora, ano_publicacao, sinopse } = req.body;
 
     const service = new CreateBookService();
 
@@ -12,6 +12,7 @@ export class CreateBookController {
         isbn,
         titulo,
         autor,
+        categoria,
         editora,
         ano_publicacao: Number(ano_publicacao),
         sinopse,

@@ -6,6 +6,7 @@ interface CreateBookDTO {
   isbn: string;
   titulo: string;
   autor: string;
+  categoria: string;
   editora: string;
   ano_publicacao: number;
   sinopse: string;
@@ -28,12 +29,29 @@ export class CreateBookService {
         isbn: data.isbn,
         titulo: data.titulo,
         autor: data.autor,
+        categoria: data.categoria,
         editora: data.editora,
         ano_publicacao: data.ano_publicacao,
         sinopse: data.sinopse,
       },
     });
 
-    return novoLivro;
+    //Cria automaticamente um exemplar DISPONÍVEL
+    const codigo_exemplar = `EXEMP-${novoLivro.id_livro}-${Date.now()}`;
+
+    const novoExemplar = await prisma.exemplares.create({
+      data: {
+        id_livro: novoLivro.id_livro,
+        codigo_exemplar,
+        status: "DISPONIVEL",
+      },
+    });
+
+    //Retorna o livro e o exemplar criado
+    return {
+      ...novoLivro,
+      exemplar: novoExemplar,
+      mensagem: "Livro e exemplar cadastrados com sucesso!",
+    };
   }
 }
