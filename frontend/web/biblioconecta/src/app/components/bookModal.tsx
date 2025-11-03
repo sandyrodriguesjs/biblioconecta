@@ -140,9 +140,9 @@ export default function BookModal({ isOpen, onClose, book }: BookModalProps) {
             </div>
 
             {/* Comentários existentes */}
-            {book.comentarios.length > 0 && (
+            {(book.comentarios ?? []).length > 0 && (
               <div className="mt-4 space-y-3">
-                {book.comentarios?.map((c, i) => (
+                {(book.comentarios ?? []).map((c, i) => (
                   <div
                     key={i}
                     className="border rounded-lg p-3 bg-gray-50 dark:bg-gray-800"

@@ -21,25 +21,24 @@ export default function PerfilUsuarioPage() {
   const [erro, setErro] = useState<string | null>(null);
 
   const buscarDadosUsuario = async () => {
-  try {
-    setCarregando(true);
-    setErro(null);
+    try {
+      setCarregando(true);
+      setErro(null);
 
-    const resposta = await api.get("/me");
-    const dados = resposta.data;
+      const resposta = await api.get("/me");
+      const dados = resposta.data;
 
-    setUsuario({
-      nome: dados.name, // ⚠️ backend retorna `name`, não `nome`
-      email: dados.email,
-    });
-  } catch (error) {
-    console.error("Erro ao carregar usuário:", error);
-    setErro("Não foi possível carregar os dados do usuário. Tente novamente mais tarde.");
-  } finally {
-    setCarregando(false);
-  }
-};
-
+      setUsuario({
+        nome: dados.name, // ⚠️ backend retorna `name`, não `nome`
+        email: dados.email,
+      });
+    } catch (error) {
+      console.error("Erro ao carregar usuário:", error);
+      setErro("Não foi possível carregar os dados do usuário. Tente novamente mais tarde.");
+    } finally {
+      setCarregando(false);
+    }
+  };
 
   useEffect(() => {
     buscarDadosUsuario();
@@ -168,10 +167,10 @@ export default function PerfilUsuarioPage() {
         </main>
       </div>
 
-      {/* Botão Sair */}
+      {/* Botão Sair flutuante no canto inferior esquerdo */}
       <button
         onClick={handleSair}
-        className="fixed bottom-6 right-6 z-50 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 flex items-center gap-2"
+        className="fixed bottom-6 left-6 z-50 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 flex items-center gap-2"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
