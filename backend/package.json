@@ -11,7 +11,7 @@
     "generate": "prisma generate"
   },
   "prisma": {
-    "schema": "../database/prisma/schema.prisma"
+    "schema": "database/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",

@@ -36,6 +36,7 @@ model livros {
   autor           String
   editora         String
   ano_publicacao  Int
+  categoria       String  
   sinopse         String
 
   // Relacionamentos
