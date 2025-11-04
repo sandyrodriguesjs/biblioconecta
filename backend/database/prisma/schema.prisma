@@ -8,6 +8,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model roles {
+  id_role     Int        @id @default(autoincrement())
+  nome        String     @unique
+  usuarios    usuarios[]
+}
+
+
 // ============================
 //  Usuários
 // ============================
@@ -16,8 +23,11 @@ model usuarios {
   name String
   email         String       @unique
   password    String
-  status        String       // ❗ Agora obrigatório
+  status        String    
   data_cadastro DateTime     @default(now())
+
+  id_role       Int     
+  role          roles        @relation(fields: [id_role], references: [id_role])
 
   // Relacionamentos
   emprestimos emprestimos[]
