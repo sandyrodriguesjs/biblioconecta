@@ -3,13 +3,14 @@ import { PrismaClient } from '@prisma/client';
 import { isAuthenticated } from '../middlewares/IsAuthenticated';
 import { registerUserController } from "../controllers/RegisterUserContoller";
 import { updateUserController } from "../controllers/UpdateUserController";
+import { deleteUserController } from "../controllers/DeleteUserController";
 import { getUserDetailsController } from "../controllers/GetUserDetailsController";
+import { getAllUsersController } from "../controllers/GetAllUsersController";
 import { authUserController } from "../controllers/AuthUserController";
 import { createReservaController } from "../controllers/CreateReservaController";
 
 
 const router = Router();
-const prisma = new PrismaClient();
 
 router.post('/login', authUserController.handle.bind(authUserController));
 
@@ -28,12 +29,21 @@ router.put(
   updateUserController.handle.bind(updateUserController)
 );
 
-// Rota de exemplo: listar todos os usuários
-router.get('/', async (req, res) => {
-  const usuarios = await prisma.usuarios.findMany();
-  res.json(usuarios);
-});
+//Listar todos os uusuários (apenas ADMIN)
+router.get(
+  "/usuarios",
+  isAuthenticated.handle.bind(isAuthenticated),
+  getAllUsersController.handle.bind(getAllUsersController)
+);
 
+//Deletar usuário (apenas ADMIN)
+router.delete(
+  "/usuarios/:id",
+  isAuthenticated.handle.bind(isAuthenticated),
+  deleteUserController.handle.bind(deleteUserController)
+);
+
+//Reservar um livro
 router.post(
   "/reservas",
   isAuthenticated.handle.bind(isAuthenticated),
