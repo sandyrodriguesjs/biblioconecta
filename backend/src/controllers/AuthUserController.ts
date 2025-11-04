@@ -12,7 +12,11 @@ class AuthUserController {
 
     try {
       //Busca o usuário pelo e-mail
-      const usuario = await prisma.usuarios.findUnique({ where: { email } });
+      const usuario = await prisma.usuarios.findUnique({
+        where: { email },
+        include: { role: true },
+      });
+
 
       if (!usuario) {
         return res.status(401).json({ erro: "Credenciais inválidas" });
@@ -27,7 +31,8 @@ class AuthUserController {
       //Gera o token JWT com o campo `subject` (sub)
       const token = jwt.sign(
         {
-          email: usuario.email, // payload opcional
+          email: usuario.email,
+          role: usuario.role.nome,
         },
         JWT_SECRET,
         {
@@ -44,6 +49,7 @@ class AuthUserController {
           id: usuario.id_usuario,
           nome: usuario.name,
           email: usuario.email,
+          role: usuario.role.nome,
         },
       });
     } catch (error) {
