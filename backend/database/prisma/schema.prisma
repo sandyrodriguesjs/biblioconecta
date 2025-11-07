@@ -79,7 +79,7 @@ model emprestimos {
   id_exemplar             Int
   data_retirada           DateTime
   data_prevista_devolucao DateTime
-  data_devolucao          DateTime
+  data_devolucao          DateTime?
   renovado               Boolean    // ❗ Agora obrigatório
 
   // Relacionamentos
