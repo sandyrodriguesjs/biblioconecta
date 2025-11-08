@@ -62,9 +62,8 @@ model exemplares {
   id_exemplar     Int          @id @default(autoincrement())
   id_livro        Int
   codigo_exemplar String       @unique
-  status          String       // ❗ Agora obrigatório
+  status          String
 
-  // Relacionamentos
   livro       livros        @relation(fields: [id_livro], references: [id_livro])
   emprestimos emprestimos[]
   historico   historico[]
@@ -98,7 +97,6 @@ model reservas {
   status       String    // ❗ Agora obrigatório
   posicao_fila Int
 
-  // Relacionamentos
   usuario usuarios @relation(fields: [id_usuario], references: [id_usuario])
   livro   livros   @relation(fields: [id_livro], references: [id_livro])
 }
