@@ -26,6 +26,8 @@ model usuarios {
   status        String    
   data_cadastro DateTime     @default(now())
 
+  foto_url      String?
+
   id_role       Int     
   role          roles        @relation(fields: [id_role], references: [id_role])
 
@@ -48,6 +50,7 @@ model livros {
   ano_publicacao  Int
   categoria       String  
   sinopse         String
+  capa_url        String?
 
   // Relacionamentos
   exemplares exemplares[]
