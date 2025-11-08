@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { cloudinary } from "../config/cloudinary";
+import fs from "fs";
 
 const prisma = new PrismaClient();
 
@@ -7,34 +9,60 @@ interface UpdateUserData {
   name?: string;
   email?: string;
   password?: string;
+  fotoFilePath?: string;
 }
 
 export class UpdateUserService {
   async execute(userId: number, data: UpdateUserData) {
     if (!userId) {
-      throw new Error("ID do usuário não encontrado. Token inválido ou ausente.");
+      throw new Error("ID do usuário não encontrado.");
     }
 
-    const { name, email, password } = data;
+    const { name, email, password, fotoFilePath } = data;
 
-    const userExists = await prisma.usuarios.findUnique({
+    const user = await prisma.usuarios.findUnique({
       where: { id_usuario: userId },
     });
 
-    if (!userExists) {
+    if (!user) {
       throw new Error("Usuário não encontrado");
     }
 
+    //Hash da senha, se houver alteração
     let hashedPassword;
     if (password) {
       hashedPassword = await bcrypt.hash(password, 10);
     }
 
+    //Upload da nova foto, se enviada
+    let fotoURL = user.foto_url;
+
+    if (fotoFilePath) {
+      // Se já tinha foto, remove do Cloudinary
+      if (user.foto_url) {
+        const publicId = user.foto_url.split("/").pop()?.split(".")[0];
+        if (publicId) {
+          await cloudinary.uploader.destroy(`usuarios/${publicId}`);
+        }
+      }
+
+      // Upload nova foto
+      const upload = await cloudinary.uploader.upload(fotoFilePath, {
+        folder: "usuarios",
+      });
+
+      fotoURL = upload.secure_url;
+
+      fs.unlinkSync(fotoFilePath);
+    }
+
+    //Atualiza o usuário
     const updatedUser = await prisma.usuarios.update({
       where: { id_usuario: userId },
       data: {
         name,
         email,
+        foto_url: fotoURL,
         ...(hashedPassword && { password: hashedPassword }),
       },
       select: {
@@ -43,6 +71,7 @@ export class UpdateUserService {
         email: true,
         status: true,
         data_cadastro: true,
+        foto_url: true,
       },
     });
 

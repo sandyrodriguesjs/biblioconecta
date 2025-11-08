@@ -6,6 +6,7 @@ import { updateBookController } from "../controllers/UpdateBookController";
 import { deleteBookController } from "../controllers/DeleteBookController";
 import { getBooksController } from "../controllers/GetBooksController";
 import { isAuthenticated } from '../middlewares/IsAuthenticated';
+import { upload } from "../middlewares/multer";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -23,9 +24,11 @@ router.get("livros/:id",
     (req, res) => getBooksController.listById(req, res));
 
 //Cadastrar novo livro
-router.post("/livros",
-    isAuthenticated.handle.bind(isAuthenticated),
-    (req, res) => createBookController.handle(req, res));
+router.post(
+    "/livros",
+    upload.single("capa"),
+    (req, res) => createBookController.handle(req, res)
+);
 
 // Atualizar livro
 router.put("/livros/:id",
@@ -33,7 +36,7 @@ router.put("/livros/:id",
     (req, res) => updateBookController.handle(req, res));
 
 // Deletar livro
-router.delete("/livros/:id", 
+router.delete("/livros/:id",
     isAuthenticated.handle.bind(isAuthenticated),
     (req, res) => deleteBookController.handle(req, res));
 

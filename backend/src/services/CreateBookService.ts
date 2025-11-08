@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { createBookSchema } from "../schemas/createBook.schema";
+import { cloudinary } from "../config/cloudinary";
+import fs from "fs";
 
 const prisma = new PrismaClient();
 
@@ -11,37 +13,46 @@ interface CreateBookDTO {
   editora: string;
   ano_publicacao: number;
   sinopse: string;
+  capa_url?: string;
 }
 
 export class CreateBookService {
   async execute(data: CreateBookDTO) {
 
-    //Validação Zod (agora aplicando!)
     const validatedData = createBookSchema.parse(data);
-    
-    //Verifica ISBN já existente
-    const existingBook = await prisma.livros.findUnique({
+
+    let capa_url: string | undefined = undefined;
+
+    //SE vier arquivo, faz upload para o Cloudinary
+    if (data.capa_url) {
+      const uploadResult = await cloudinary.uploader.upload(data.capa_url, {
+        folder: "biblioteca/livros",
+      });
+
+      capa_url = uploadResult.secure_url;
+
+      // Remove arquivo temporário
+      fs.unlinkSync(data.capa_url);
+    }
+
+    //Verifica ISBN
+    const already = await prisma.livros.findUnique({
       where: { isbn: validatedData.isbn },
     });
 
-    if (existingBook) {
+    if (already) {
       throw new Error("Livro com este ISBN já está cadastrado.");
     }
 
-    //Cria o novo livro usando validatedData
+    //Cria o livro
     const novoLivro = await prisma.livros.create({
       data: {
-        isbn: validatedData.isbn,
-        titulo: validatedData.titulo,
-        autor: validatedData.autor,
-        categoria: validatedData.categoria,
-        editora: validatedData.editora,
-        ano_publicacao: validatedData.ano_publicacao,
-        sinopse: validatedData.sinopse,
+        ...validatedData,
+        capa_url,
       },
     });
 
-    //Cria exemplar gerado automaticamente
+    //Cria exemplar
     const codigo_exemplar = `EXEMP-${novoLivro.id_livro}-${Date.now()}`;
 
     const novoExemplar = await prisma.exemplares.create({
@@ -55,7 +66,7 @@ export class CreateBookService {
     return {
       ...novoLivro,
       exemplar: novoExemplar,
-      mensagem: "Livro e exemplar cadastrados com sucesso!",
+      mensagem: "Livro cadastrado com sucesso!",
     };
   }
 }

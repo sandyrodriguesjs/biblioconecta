@@ -5,6 +5,8 @@ export class CreateBookController {
   async handle(req: Request, res: Response): Promise<void> {
     const { isbn, titulo, autor, categoria, editora, ano_publicacao, sinopse } = req.body;
 
+    const capaFile = req.file;
+
     const service = new CreateBookService();
 
     try {
@@ -16,6 +18,7 @@ export class CreateBookController {
         editora,
         ano_publicacao: Number(ano_publicacao),
         sinopse,
+        capa_url: capaFile?.path,
       });
 
       res.status(201).json(livro);

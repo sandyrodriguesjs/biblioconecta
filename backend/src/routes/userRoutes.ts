@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
 import { isAuthenticated } from '../middlewares/IsAuthenticated';
 import { registerUserController } from "../controllers/RegisterUserContoller";
 import { updateUserController } from "../controllers/UpdateUserController";
@@ -8,6 +7,7 @@ import { getUserDetailsController } from "../controllers/GetUserDetailsControlle
 import { getAllUsersController } from "../controllers/GetAllUsersController";
 import { authUserController } from "../controllers/AuthUserController";
 import { createReservaController } from "../controllers/CreateReservaController";
+import { upload } from "../middlewares/multer";
 
 
 const router = Router();
@@ -26,6 +26,7 @@ router.get(
 router.put(
   "/me",
   isAuthenticated.handle.bind(isAuthenticated),
+  upload.single("foto"),
   updateUserController.handle.bind(updateUserController)
 );
 

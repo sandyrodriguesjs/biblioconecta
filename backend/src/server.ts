@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 app.use(
   cors({
     origin: "http://localhost:3000", // URL do seu frontend
-    credentials: true,               // Permite envio de cookies/autenticação
+    credentials: true,          
   })
 );
 
