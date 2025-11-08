@@ -3,6 +3,7 @@ import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import userRoutes from "./routes/userRoutes";
 import booksRoutes from "./routes/booksRoutes";
+import booksCirculationRoutes from "./routes/booksCirculationRoutes";
 
 const app = express();
 const prisma = new PrismaClient();
@@ -20,6 +21,7 @@ app.use(express.json());
 // Rotas
 app.use("/", userRoutes);
 app.use("/", booksRoutes);
+app.use("/", booksCirculationRoutes);
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
