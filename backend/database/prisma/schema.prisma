@@ -70,6 +70,7 @@ model exemplares {
   livro       livros        @relation(fields: [id_livro], references: [id_livro])
   emprestimos emprestimos[]
   historico   historico[]
+  reservas    reservas[]
 }
 
 // ============================
@@ -94,6 +95,7 @@ model emprestimos {
 // ============================
 model reservas {
   id_reserva   Int       @id @default(autoincrement())
+  id_exemplar  Int 
   id_usuario   Int
   id_livro     Int
   data_reserva DateTime
@@ -102,6 +104,7 @@ model reservas {
 
   usuario usuarios @relation(fields: [id_usuario], references: [id_usuario])
   livro   livros   @relation(fields: [id_livro], references: [id_livro])
+  exemplar exemplares @relation(fields: [id_exemplar], references: [id_exemplar])
 }
 
 // ============================
