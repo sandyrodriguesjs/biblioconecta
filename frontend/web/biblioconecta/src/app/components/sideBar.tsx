@@ -1,5 +1,5 @@
 "use client";
-import { Home, Search, Bookmark, Calendar, LogOut } from "lucide-react";
+import { Home, Search, Bookmark, Calendar, LogOut, LibraryBig } from "lucide-react";
 import Link from "next/link";
 
 export default function SideBar() {
@@ -11,11 +11,11 @@ export default function SideBar() {
         </h1>
 
         <nav className="flex flex-col mt-4">
-          <Link href="./homePage" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
+          <Link href="/homePage" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
             <Home size={20} /> Home
           </Link>
-          <Link href="/bookmarks" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
-            <Bookmark size={20} /> Marcações
+          <Link href="/listBook" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
+            <LibraryBig size={20} /> Acervo de Livros
           </Link>
           <Link href="/reservas" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
             <Calendar size={20} /> Reservas
