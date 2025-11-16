@@ -19,7 +19,7 @@ router.get("/livros",
     (req, res) => getBooksController.listAll(req, res));
 
 //Listar livro por ID
-router.get("livros/:id",
+router.get("/livros/:id",
     isAuthenticated.handle.bind(isAuthenticated),
     (req, res) => getBooksController.listById(req, res));
 
@@ -27,11 +27,14 @@ router.get("livros/:id",
 router.post(
     "/livros",
     upload.single("capa"),
+    isAuthenticated.handle.bind(isAuthenticated),
     (req, res) => createBookController.handle(req, res)
 );
 
 // Atualizar livro
-router.put("/livros/:id",
+router.put(
+    "/livros/:id",
+    upload.single("capa"),
     isAuthenticated.handle.bind(isAuthenticated),
     (req, res) => updateBookController.handle(req, res));
 
