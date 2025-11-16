@@ -1,21 +1,18 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 export interface Book {
-  id: string;
+  id_livro: string;
   isbn: string;
   titulo: string;
   autor: string;
   editora?: string;
   ano_publicacao: string;
   sinopse: string;
-
-  imagem?: string;
+  capa_url?: string;
   categoria?: string;
-  idioma?: string;
   tags?: string[];
-  avaliacao: number;
-  comentarios?: { usuario: string; data: string; texto: string }[];
   disponivel?: boolean;
 }
 
@@ -24,25 +21,64 @@ interface BookCardProps {
   onClick: (book: Book) => void;
 }
 
-const BookCard: React.FC<BookCardProps> = ({
-  book,
-  onClick,
-}: BookCardProps) => {
+const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
+  const router = useRouter();
+
+  // 🔹 Abre o modal (ver resumo)
+  const handleVerResumo = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClick(book);
+  };
+
+  // 🔹 Redireciona para página de detalhes
+  const handleVerDetalhes = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    router.push(`/bookDetailsPage/${book.id_livro}`);
+  };
+
   return (
     <div
-      onClick={() => onClick(book)}
-      className="cursor-pointer bg-white dark:bg-gray-800 shadow-md rounded-xl overflow-hidden hover:scale-105 transition-transform duration-200"
+      className="cursor-pointer bg-gradient-to-br from-blue-100 via-white to-blue-50 
+                 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 
+                 shadow-lg rounded-xl overflow-hidden 
+                 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
     >
-      <img
-        src={book.imagem}
-        alt={book.titulo}
-        className="w-full h-48 object-cover"
-      />
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          {book.titulo}
-        </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400">{book.autor}</p>
+      {/* 📘 Capa do livro */}
+      <div className="relative w-full h-64 overflow-hidden">
+        <img
+          src={book.capa_url ?? "/default-book-cover.png"}
+          alt={book.titulo}
+          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent 
+                        opacity-0 hover:opacity-100 transition duration-300 flex items-end p-3">
+          <span className="text-white text-sm italic truncate">
+            Clique para ver mais
+          </span>
+        </div>
+      </div>
+
+      {/* 📝 Sinopse + Botões */}
+      <div className="p-4 flex flex-col justify-between flex-grow">
+        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed line-clamp-4 mb-4">
+          {book.sinopse || "Sinopse não disponível."}
+        </p>
+
+        <div className="flex gap-2">
+          <button
+            onClick={handleVerResumo}
+            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 rounded-lg transition"
+          >
+            Ver Resumo
+          </button>
+
+          <button
+            onClick={handleVerDetalhes}
+            className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium py-2 rounded-lg transition"
+          >
+            Detalhes
+          </button>
+        </div>
       </div>
     </div>
   );
