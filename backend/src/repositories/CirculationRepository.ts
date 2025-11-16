@@ -21,13 +21,20 @@ export class CirculationRepository {
     });
   }
 
-  async findReservationForOtherUser(bookId: number, userId: number) {
+  async findActiveReservationForCopy(userId: number, exemplarId: number) {
     return prisma.reservas.findFirst({
       where: {
-        id_livro: bookId,
-        id_usuario: { not: userId },
-        status: "Ativa"
-      }
+        id_usuario: userId,
+        id_exemplar: exemplarId,
+        status: "ATIVA",
+      },
+    });
+  }
+
+  async updateReservationStatus(reservaId: number, status: string) {
+    return prisma.reservas.update({
+      where: { id_reserva: reservaId },
+      data: { status },
     });
   }
 
