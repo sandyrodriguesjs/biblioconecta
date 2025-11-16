@@ -32,7 +32,7 @@ export default function Login() {
       localStorage.setItem("token", token);
 
       // ✅ Redireciona para a página principal
-      router.push("pages/homePage");
+      router.push("/homePage");
     } catch (err: any) {
       console.error(err);
       setError(
@@ -91,7 +91,7 @@ export default function Login() {
         </button>
 
         <Link
-          href="pages/registerPage"
+          href="/registerPage"
           className="text-sky-500 font-medium hover:underline hover:text-sky-600 transition"
         >
           <button
