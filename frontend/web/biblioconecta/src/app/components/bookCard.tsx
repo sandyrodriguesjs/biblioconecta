@@ -1,20 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-
-export interface Book {
-  id_livro: string;
-  isbn: string;
-  titulo: string;
-  autor: string;
-  editora?: string;
-  ano_publicacao: string;
-  sinopse: string;
-  capa_url?: string;
-  categoria?: string;
-  tags?: string[];
-  disponivel?: boolean;
-}
+import type { Book } from "../types/books";
 
 interface BookCardProps {
   book: Book;
