@@ -6,25 +6,23 @@ import SideBar from "../components/sideBar";
 import api from "../../api/axios";
 import { Loader2, Pencil, Trash2, BookOpen } from "lucide-react";
 import { useRouter } from "next/navigation";
+import ConfirmModal from "../components/confirmModal";
+import BookModal from "../components/bookModal";
+import type { Book } from "../types/books";
 
-interface Livro {
-  id_livro: number;
-  titulo: string;
-  autor: string;
-  ano_publicacao: number;
-  categoria: string;
-  isbn: string;
-  capa_url?: string;
-  imagem?: string;
-}
-
-export default function ListaLivrosPage() {
+export default function ListBookPage() {
   const router = useRouter();
 
-  const [livros, setLivros] = useState<Livro[]>([]);
+  const [livros, setLivros] = useState<Book[]>([]);
   const [busca, setBusca] = useState("");
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState<string | null>(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [livroParaExcluir, setLivroParaExcluir] = useState<Book | undefined>(undefined);
+
+  const [modalInfoOpen, setModalInfoOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<Book | undefined>(undefined);
 
   async function carregarLivros() {
     try {
@@ -52,13 +50,23 @@ export default function ListaLivrosPage() {
     );
   });
 
-  async function deletarLivro(id_livro: number) {
-    if (!confirm("Tem certeza que deseja excluir este livro?")) return;
+  function abrirModal(livro: Book) {
+    setLivroParaExcluir(livro);
+    setModalOpen(true);
+  }
+
+  function abrirModalInfo(livro: Book) {
+    setSelectedBook(livro);
+    setModalInfoOpen(true);
+  }
+
+  async function confirmarExclusao() {
+    if (!livroParaExcluir) return;
 
     try {
-      await api.delete(`/livros/${id_livro}`);
+      await api.delete(`/livros/${livroParaExcluir.id_livro}`);
+      setModalOpen(false);
       carregarLivros();
-      alert("Livro excluído com sucesso!");
     } catch (err) {
       console.error(err);
       alert("Erro ao excluir o livro.");
@@ -120,10 +128,7 @@ export default function ListaLivrosPage() {
                 <tbody>
                   {livrosFiltrados.length === 0 ? (
                     <tr>
-                      <td
-                        colSpan={6}
-                        className="py-6 text-center text-gray-600"
-                      >
+                      <td colSpan={6} className="py-6 text-center text-gray-600">
                         Nenhum livro encontrado.
                       </td>
                     </tr>
@@ -135,11 +140,7 @@ export default function ListaLivrosPage() {
                       >
                         <td className="p-3">
                           <img
-                            src={
-                              livro.capa_url ||
-                              livro.imagem ||
-                              "/default-book-cover.png"
-                            }
+                            src={livro.capa_url || "/default-book-cover.png"}
                             className="w-14 h-20 object-cover rounded shadow"
                           />
                         </td>
@@ -152,9 +153,7 @@ export default function ListaLivrosPage() {
                         <td className="p-3">
                           <div className="flex gap-3">
                             <button
-                              onClick={() =>
-                                router.push(`/livro/${livro.id_livro}`)
-                              }
+                              onClick={() => abrirModalInfo(livro)}
                               className="p-2 bg-blue-100 hover:bg-blue-200 rounded-lg"
                               title="Ver detalhes"
                             >
@@ -162,9 +161,7 @@ export default function ListaLivrosPage() {
                             </button>
 
                             <button
-                              onClick={() =>
-                                router.push(`/editBook/${livro.id_livro}`)
-                              }
+                              onClick={() => router.push(`/editBook/${livro.id_livro}`)}
                               className="p-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg"
                               title="Editar"
                             >
@@ -172,7 +169,7 @@ export default function ListaLivrosPage() {
                             </button>
 
                             <button
-                              onClick={() => deletarLivro(livro.id_livro)}
+                              onClick={() => abrirModal(livro)}
                               className="p-2 bg-red-100 hover:bg-red-200 rounded-lg"
                               title="Excluir"
                             >
@@ -189,6 +186,20 @@ export default function ListaLivrosPage() {
           )}
         </main>
       </div>
+
+      <ConfirmModal
+        isOpen={modalOpen}
+        title="Excluir livro"
+        message={`Tem certeza que deseja excluir "${livroParaExcluir?.titulo}"?`}
+        onClose={() => setModalOpen(false)}
+        onConfirm={confirmarExclusao}
+      />
+
+      <BookModal
+        isOpen={modalInfoOpen}
+        onClose={() => setModalInfoOpen(false)}
+        book={selectedBook}
+      />
     </div>
   );
 }
