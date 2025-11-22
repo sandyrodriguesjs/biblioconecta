@@ -4,15 +4,16 @@ import { useEffect, useState } from "react";
 import { Filter } from "lucide-react";
 import NavBar from "../components/navBar";
 import SideBar from "../components/sideBar";
-import BookCard, { Book } from "@/app/components/bookCard";
+import BookCard from "@/app/components/bookCard";
 import BookModal from "@/app/components/bookModal";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import api from "@/api/axios"; 
+import type { Book } from "../types/books";
 
 export default function HomePage() {
   const [livros, setLivros] = useState<Book[]>([]);
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [selectedBook, setSelectedBook] = useState<Book | undefined>(undefined);
   const [termo, setTermo] = useState("");
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
   const [loading, setLoading] = useState(true);
@@ -152,7 +153,7 @@ export default function HomePage() {
           <BookModal
             isOpen={!!selectedBook}
             book={selectedBook}
-            onClose={() => setSelectedBook(null)}
+            onClose={() => setSelectedBook(undefined)}
           />
         </main>
       </div>
