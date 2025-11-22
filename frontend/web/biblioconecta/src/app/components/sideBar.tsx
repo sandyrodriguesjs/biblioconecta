@@ -1,5 +1,5 @@
 "use client";
-import { Home, Search, Bookmark, Calendar, LogOut, LibraryBig } from "lucide-react";
+import { Home, BookCheck, LogOut, LibraryBig } from "lucide-react";
 import Link from "next/link";
 
 export default function SideBar() {
@@ -17,8 +17,8 @@ export default function SideBar() {
           <Link href="/listBook" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
             <LibraryBig size={20} /> Acervo de Livros
           </Link>
-          <Link href="/reservas" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
-            <Calendar size={20} /> Reservas
+          <Link href="/pendingReservations" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
+            <BookCheck size={20} /> Reservas pendentes
           </Link>
         </nav>
       </div>
