@@ -4,6 +4,7 @@ import NavBar from "../components/navBar";
 import SideBar from "../components/sideBar";
 import api from "../../api/axios";
 import { Camera, Trash2 } from "lucide-react";
+import Swal from "sweetalert2";
 
 interface Usuario {
   nome: string;
@@ -25,26 +26,37 @@ export default function PerfilUsuarioPage() {
   const [atualizando, setAtualizando] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // 🔹 Busca dados do usuário logado
+  //Buscar dados do usuário
   const buscarDadosUsuario = async () => {
     try {
       setCarregando(true);
-      const { data } = await api.get("/me");
 
+      // Dados do usuário
+      const { data } = await api.get("/me");
       setUsuario({
         nome: data.name,
         email: data.email,
-        foto: data.foto ?? null, // backend deve retornar a URL se existir
+        foto: data.foto ?? null,
       });
 
-      // Exemplo de histórico simulado
-      setHistorico([
-        { titulo: "A arte de viver", dataLeitura: "2025-01-10" },
-        { titulo: "Vida longa", dataLeitura: "2025-03-22" },
-      ]);
+      //Buscar histórico real do mês atual
+      const historyResponse = await api.get("/reading-history/current-month");
+
+      setHistorico(
+        historyResponse.data.map((item: any) => ({
+          titulo: item.exemplar.livro.titulo,
+          dataLeitura: item.data_retirada,
+        }))
+      );
+
     } catch (error) {
       console.error("Erro ao carregar usuário:", error);
-      setErro("Não foi possível carregar os dados do usuário.");
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao carregar dados",
+        text: "Não foi possível carregar os dados do usuário.",
+      });
+      setErro("Erro ao carregar usuário.");
     } finally {
       setCarregando(false);
     }
@@ -57,9 +69,9 @@ export default function PerfilUsuarioPage() {
   const formatarData = (data: string): string =>
     new Date(data).toLocaleDateString("pt-BR");
 
-  const obterInicial = (nome: string): string => nome.charAt(0).toUpperCase();
+  const obterInicial = (nome: string): string =>
+    nome.charAt(0).toUpperCase();
 
-  // 📸 Atualizar foto de perfil
   const handleFotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -79,32 +91,87 @@ export default function PerfilUsuarioPage() {
       setUsuario((prev) =>
         prev ? { ...prev, foto: response.data.foto ?? previewUrl } : prev
       );
+
+      Swal.fire({
+        icon: "success",
+        title: "Foto atualizada!",
+        timer: 1300,
+        showConfirmButton: false,
+      });
+
     } catch (err) {
       console.error("Erro ao atualizar foto:", err);
-      alert("Erro ao enviar a nova foto de perfil.");
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao enviar foto",
+        text: "Não foi possível atualizar sua foto de perfil.",
+      });
     } finally {
       setAtualizando(false);
     }
   };
 
-  // ❌ Remover foto
   const handleRemoverFoto = async () => {
-    if (!confirm("Tem certeza que deseja remover sua foto de perfil?")) return;
+    const confirm = await Swal.fire({
+      icon: "warning",
+      title: "Remover foto?",
+      text: "Deseja realmente remover sua foto de perfil?",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sim, remover",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!confirm.isConfirmed) return;
 
     try {
       setAtualizando(true);
       await api.put("/me", { foto: null });
+
       setUsuario((prev) => (prev ? { ...prev, foto: null } : prev));
       setPreview(null);
+
+      Swal.fire({
+        icon: "success",
+        title: "Foto removida!",
+        timer: 1200,
+        showConfirmButton: false,
+      });
+
     } catch (err) {
       console.error("Erro ao remover foto:", err);
-      alert("Erro ao remover a foto de perfil.");
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao remover foto",
+      });
     } finally {
       setAtualizando(false);
     }
   };
 
-  const handleSair = () => alert("Funcionalidade de logout aqui!");
+  const handleSair = async () => {
+    const confirm = await Swal.fire({
+      icon: "question",
+      title: "Deseja sair?",
+      showCancelButton: true,
+      confirmButtonText: "Sair",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#d33",
+    });
+
+    if (confirm.isConfirmed) {
+      localStorage.removeItem("token");
+      Swal.fire({
+        icon: "success",
+        title: "Você saiu da conta",
+        timer: 1200,
+        showConfirmButton: false,
+      }).then(() => {
+        window.location.href = "/";
+      });
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-[#f5f8ff] flex">
@@ -115,153 +182,103 @@ export default function PerfilUsuarioPage() {
       <div className="flex-1 flex flex-col ml-20">
         <NavBar />
 
-        <main className="ml-56 flex-1 p-8">
+        <main className="ml-56 p-8 flex-1">
           <h1 className="text-3xl font-bold text-blue-600 text-center mb-10">
             Perfil do Usuário
           </h1>
 
           {carregando ? (
-            <div className="text-center text-gray-600 py-10">
-              <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-              Carregando informações do perfil...
+            <div className="text-center py-10 text-gray-600">
+              Carregando informações...
             </div>
-          ) : erro ? (
-            <div className="max-w-3xl mx-auto mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md text-center">
-              {erro}
-              <button
-                onClick={buscarDadosUsuario}
-                className="mt-3 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg block mx-auto"
-              >
-                Tentar Novamente
-              </button>
-            </div>
-          ) : (
-            usuario && (
-              <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* 🔹 Perfil */}
-                <div className="col-span-1 bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
-                  {/* Foto */}
-                  <div className="relative mb-4">
-                    {usuario.foto || preview ? (
-                      <img
-                        src={preview || usuario.foto!}
-                        alt="Foto do usuário"
-                        className="w-32 h-32 rounded-full object-cover shadow-lg"
-                      />
-                    ) : (
-                      <div className="w-32 h-32 rounded-full bg-blue-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
-                        {obterInicial(usuario.nome)}
-                      </div>
-                    )}
+          ) : usuario ? (
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                    {/* Ações */}
-                    <div className="absolute -bottom-2 right-0 flex gap-2">
-                      <button
-                        onClick={() => inputRef.current?.click()}
-                        disabled={atualizando}
-                        className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow transition"
-                        title="Alterar foto"
-                      >
-                        <Camera className="w-4 h-4" />
-                      </button>
+              <div className="bg-white p-6 shadow-md rounded-xl flex flex-col items-center">
 
-                      {(usuario.foto || preview) && (
-                        <button
-                          onClick={handleRemoverFoto}
-                          disabled={atualizando}
-                          className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-full shadow transition"
-                          title="Remover foto"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      )}
-                    </div>
-
-                    {/* Input invisível */}
-                    <input
-                      ref={inputRef}
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFotoChange}
-                      className="hidden"
+                <div className="relative mb-4">
+                  {usuario.foto || preview ? (
+                    <img
+                      src={preview || usuario.foto!}
+                      className="w-32 h-32 rounded-full object-cover shadow-lg"
                     />
-                  </div>
-
-                  <h2 className="text-xl font-semibold text-gray-800 mb-1">
-                    {usuario.nome}
-                  </h2>
-                  <p className="text-gray-500 mb-6">{usuario.email}</p>
-
-                  <div className="w-full space-y-5">
-                    <div>
-                      <label className="block text-gray-700 font-semibold mb-1">
-                        Nome Completo
-                      </label>
-                      <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-50 text-gray-700">
-                        {usuario.nome}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-gray-700 font-semibold mb-1">
-                        Email
-                      </label>
-                      <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-50 text-gray-700">
-                        {usuario.email}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 🔹 Histórico */}
-                <div className="col-span-2 bg-white rounded-xl shadow-md p-6">
-                  <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-                    Histórico de Leitura
-                  </h2>
-
-                  {historico.length === 0 ? (
-                    <p className="text-gray-500 text-center py-4">
-                      Nenhum livro finalizado ainda.
-                    </p>
                   ) : (
-                    <div className="space-y-4">
-                      {historico.map((livro, index) => (
-                        <div
-                          key={index}
-                          className="flex justify-between items-center border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition"
-                        >
-                          <div>
-                            <h3 className="font-semibold text-gray-800">
-                              {livro.titulo}
-                            </h3>
-                            <p className="text-gray-500 text-sm mt-1">
-                              Finalizado em: {formatarData(livro.dataLeitura)}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
+                    <div className="w-32 h-32 rounded-full bg-blue-500 flex items-center justify-center text-4xl text-white shadow-lg">
+                      {obterInicial(usuario.nome)}
                     </div>
                   )}
+
+                  {/* Botões */}
+                  <div className="absolute -bottom-2 right-0 flex gap-2">
+                    <button
+                      onClick={() => inputRef.current?.click()}
+                      disabled={atualizando}
+                      className="p-2 bg-blue-500 text-white rounded-full shadow hover:bg-blue-600"
+                    >
+                      <Camera className="w-4 h-4" />
+                    </button>
+
+                    {(usuario.foto || preview) && (
+                      <button
+                        onClick={handleRemoverFoto}
+                        disabled={atualizando}
+                        className="p-2 bg-red-500 text-white rounded-full shadow hover:bg-red-600"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+
+                  <input
+                    ref={inputRef}
+                    type="file"
+                    onChange={handleFotoChange}
+                    className="hidden"
+                    accept="image/*"
+                  />
                 </div>
+
+                <h2 className="text-xl font-semibold text-black">{usuario.nome}</h2>
+                <p className="text-black">{usuario.email}</p>
               </div>
-            )
-          )}
+
+              <div className="col-span-2 bg-white p-6 rounded-xl shadow-md">
+                <h2 className="text-2xl font-semibold mb-6 text-black">
+                  Histórico de Leitura
+                </h2>
+
+                {historico.length === 0 ? (
+                  <p className="text-center text-gray-500">
+                    Nenhum livro encontrado neste mês.
+                  </p>
+                ) : (
+                  <div className="space-y-4">
+                    {historico.map((livro, index) => (
+                      <div
+                        key={index}
+                        className="border p-4 rounded-lg hover:bg-gray-50 flex justify-between items-center"
+                      >
+                        <div>
+                          <h3 className="font-medium text-gray-800">{livro.titulo}</h3>
+                          <p className="text-sm text-gray-500">
+                            Emprestado em: {formatarData(livro.dataLeitura)}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+            </div>
+          ) : null}
         </main>
       </div>
 
-      {/* 🔘 Sair */}
       <button
         onClick={handleSair}
-        className="fixed bottom-6 left-6 z-50 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 flex items-center gap-2"
+        className="fixed bottom-6 left-6 z-50 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2"
       >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-          />
-        </svg>
         Sair
       </button>
     </div>
