@@ -6,13 +6,13 @@ import NavBar from "../../components/navBar";
 import SideBar from "../../components/sideBar";
 import api from "../../../api/axios";
 import { Loader2, Upload, X } from "lucide-react";
+import Swal from "sweetalert2";
 
 export default function EditBookPage() {
   const router = useRouter();
   const params = useParams();
   const idLivro = params.id as string;
 
-  // Dados do formulário
   const [isbn, setIsbn] = useState("");
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
@@ -23,12 +23,10 @@ export default function EditBookPage() {
   const [idioma, setIdioma] = useState("");
   const [tags, setTags] = useState<string[]>([]);
 
-  // Capa
   const [capaPreview, setCapaPreview] = useState<string | null>(null);
   const [capaFile, setCapaFile] = useState<File | null>(null);
 
   const [loading, setLoading] = useState(true);
-  const [mensagem, setMensagem] = useState<string | null>(null);
 
   // Buscar dados do livro
   useEffect(() => {
@@ -50,7 +48,12 @@ export default function EditBookPage() {
 
       } catch (err) {
         console.error(err);
-        setMensagem("Erro ao carregar dados do livro.");
+        Swal.fire({
+          icon: "error",
+          title: "Erro ao carregar livro",
+          text: "Não foi possível carregar os dados. Tente novamente.",
+          confirmButtonColor: "#d33",
+        });
       } finally {
         setLoading(false);
       }
@@ -73,7 +76,6 @@ export default function EditBookPage() {
   // Enviar atualização
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setMensagem(null);
 
     try {
       const form = new FormData();
@@ -86,19 +88,29 @@ export default function EditBookPage() {
       form.append("categoria", categoria);
       form.append("idioma", idioma);
       form.append("tags", JSON.stringify(tags));
-
       if (capaFile) form.append("capa", capaFile);
 
       await api.put(`/livros/${idLivro}`, form, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
-      setMensagem("Livro atualizado com sucesso!");
-      setTimeout(() => router.push("/homePage"), 1500);
+      Swal.fire({
+        icon: "success",
+        title: "Livro atualizado!",
+        text: "As alterações foram salvas com sucesso.",
+        confirmButtonColor: "#2563eb",
+      });
+
+      setTimeout(() => router.push("/homePage"), 1200);
 
     } catch (err: any) {
       console.error(err);
-      setMensagem("Erro ao atualizar livro.");
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao atualizar",
+        text: err?.response?.data?.error ?? "Não foi possível atualizar o livro.",
+        confirmButtonColor: "#d33",
+      });
     }
   }
 
@@ -122,12 +134,6 @@ export default function EditBookPage() {
               onSubmit={handleSubmit}
               className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6 grid grid-cols-3 gap-6"
             >
-              {mensagem && (
-                <p className="col-span-3 text-center font-medium text-blue-600">
-                  {mensagem}
-                </p>
-              )}
-
               {/* Coluna da capa */}
               <div>
                 <div className="w-40 h-60 rounded-lg overflow-hidden bg-gray-200 shadow">

@@ -5,6 +5,7 @@ import { Mail, Lock } from "lucide-react";
 import Link from "next/link";
 import api from "../api/axios";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const router = useRouter();
@@ -12,11 +13,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
     setLoading(true);
 
     try {
@@ -25,20 +24,34 @@ export default function Login() {
         password,
       });
 
-      // ✅ Recebe o token JWT do backend
       const { token } = response.data;
 
-      // ✅ Salva o token no localStorage
       localStorage.setItem("token", token);
 
-      // ✅ Redireciona para a página principal
-      router.push("/homePage");
+      // 🎉 SUCESSO
+      Swal.fire({
+        icon: "success",
+        title: "Login realizado!",
+        text: "Bem-vindo de volta!",
+        confirmButtonColor: "#3b82f6",
+        timer: 1400,
+        timerProgressBar: true,
+      }).then(() => {
+        router.push("/homePage");
+      });
+
     } catch (err: any) {
       console.error(err);
-      setError(
-        err.response?.data?.erro ||
-          "Erro ao fazer login. Verifique suas credenciais."
-      );
+
+      // ❌ ERRO
+      Swal.fire({
+        icon: "error",
+        title: "Falha ao entrar",
+        text:
+          err.response?.data?.erro ||
+          "Credenciais inválidas. Tente novamente.",
+        confirmButtonColor: "#d33",
+      });
     } finally {
       setLoading(false);
     }
@@ -54,6 +67,7 @@ export default function Login() {
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 w-full max-w-xs"
       >
+        {/* Email */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <Mail className="w-5 h-5 text-gray-500 mr-2" />
           <input
@@ -66,6 +80,7 @@ export default function Login() {
           />
         </div>
 
+        {/* Senha */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <Lock className="w-5 h-5 text-gray-500 mr-2" />
           <input
@@ -78,10 +93,7 @@ export default function Login() {
           />
         </div>
 
-        {error && (
-          <p className="text-red-500 text-sm text-center font-medium">{error}</p>
-        )}
-
+        {/* Botão Login */}
         <button
           type="submit"
           disabled={loading}
@@ -90,10 +102,8 @@ export default function Login() {
           {loading ? "Entrando..." : "Entrar →"}
         </button>
 
-        <Link
-          href="/registerPage"
-          className="text-sky-500 font-medium hover:underline hover:text-sky-600 transition"
-        >
+        {/* Botão cadastrar */}
+        <Link href="/registerPage" className="w-full">
           <button
             type="button"
             className="w-full bg-gradient-to-r from-sky-400 to-sky-500 text-white py-2 rounded-lg font-semibold shadow-md hover:opacity-90 transition"

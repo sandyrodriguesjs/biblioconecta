@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import api from "../../api/axios";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const router = useRouter();
@@ -12,32 +13,39 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
-    setSuccess("");
     setLoading(true);
 
     try {
-      // 🚀 Envia para o backend
-      const response = await api.post("/register", {
+      await api.post("/register", {
         name,
         email,
         password,
       });
 
-      setSuccess("Usuário cadastrado com sucesso!");
-      setTimeout(() => router.push("/"), 1500); // Redireciona para o login
+      Swal.fire({
+        icon: "success",
+        title: "Cadastro realizado!",
+        text: "Seu usuário foi criado com sucesso.",
+        confirmButtonColor: "#0ea5e9",
+      }).then(() => {
+        router.push("/");
+      });
 
-      console.log(response.data);
     } catch (err: any) {
       console.error(err);
-      setError(
-        err.response?.data?.erro || "Erro ao cadastrar. Tente novamente."
-      );
+
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao cadastrar",
+        text:
+          err.response?.data?.erro ||
+          "Não foi possível criar a conta. Tente novamente.",
+        confirmButtonColor: "#d33",
+      });
+
     } finally {
       setLoading(false);
     }
@@ -50,6 +58,7 @@ export default function Register() {
       </h1>
 
       <form onSubmit={handleRegister} className="flex flex-col gap-4 w-full max-w-xs">
+        
         {/* Nome */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <input
@@ -85,10 +94,6 @@ export default function Register() {
             required
           />
         </div>
-
-        {/* Mensagens */}
-        {error && <p className="text-red-500 text-sm text-center font-medium">{error}</p>}
-        {success && <p className="text-green-600 text-sm text-center font-medium">{success}</p>}
 
         {/* Botão */}
         <button

@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import NavBar from "../../components/navBar";
 import SideBar from "../../components/sideBar";
-import api from "@/api/axios"; 
+import api from "@/api/axios";
 import { Loader2 } from "lucide-react";
+
+// 👉 Apenas SweetAlert2 puro
+import Swal from "sweetalert2";
 
 interface Exemplar {
   id_exemplar: number;
   codigo_exemplar: string;
-  status: string; // DISPONIVEL | EMPRESTADO | RESERVADO
+  status: string;
 }
 
 interface Book {
@@ -33,19 +36,21 @@ export default function BookDetailsPage() {
 
   const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState<string | null>(null);
 
-  // 🔹 Fetch book by ID
+  // 🔹 Buscar livro por ID
   useEffect(() => {
     async function fetchBook() {
       try {
         setLoading(true);
         const response = await api.get(`/livros/${bookId}`);
-        console.log("Book fetched:", response.data);
         setBook(response.data);
       } catch (error) {
-        console.error("Error fetching book:", error);
-        setMessage("Error loading book information.");
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Erro ao carregar",
+          text: "Não foi possível carregar os dados do livro.",
+        });
       } finally {
         setLoading(false);
       }
@@ -57,16 +62,32 @@ export default function BookDetailsPage() {
   const isAvailable =
     book?.exemplares?.some((ex) => ex.status === "DISPONIVEL") ?? false;
 
+  // 🔹 Função para reservar
   async function handleReserve() {
     if (!book) return;
 
     try {
-      await api.post("/reservas", { idLivro: book.id_livro });
-      setMessage("📘 Book reserved successfully!");
-      setTimeout(() => router.push("/homePage"), 2000);
+      await api.post("/reservas", { id_livro: book.id_livro });
+
+      Swal.fire({
+        icon: "success",
+        title: "Reserva realizada!",
+        text: "O livro foi reservado com sucesso.",
+        confirmButtonColor: "#2563EB",
+      });
+
+      setTimeout(() => router.push("/homePage"), 1500);
     } catch (error: any) {
       console.error(error);
-      setMessage("❌ Error reserving book. Try again.");
+
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao reservar",
+        text:
+          error?.response?.data?.erro ??
+          "Não foi possível concluir a reserva.",
+        confirmButtonColor: "#DC2626",
+      });
     }
   }
 
@@ -78,7 +99,7 @@ export default function BookDetailsPage() {
 
         <main className="ml-56 p-8">
           <h1 className="text-3xl font-bold text-blue-600 mb-10 text-center">
-            Book Details
+            Detalhes do Livro
           </h1>
 
           {loading ? (
@@ -94,21 +115,28 @@ export default function BookDetailsPage() {
               />
 
               <div className="flex-1">
-                <h2 className="text-3xl font-bold mb-2">{book.titulo}</h2>
+                <h2 className="text-3xl font-bold mb-2 text-blue-600">
+                  {book.titulo}
+                </h2>
+
                 <p className="text-gray-700 mb-2 text-lg">
-                  <strong>Author:</strong> {book.autor}
+                  <strong>Autor:</strong> {book.autor}
                 </p>
+
                 <p className="text-gray-700 mb-2">
                   <strong>ISBN:</strong> {book.isbn}
                 </p>
+
                 <p className="text-gray-700 mb-2">
-                  <strong>Publisher:</strong> {book.editora}
+                  <strong>Editora:</strong> {book.editora}
                 </p>
+
                 <p className="text-gray-700 mb-2">
-                  <strong>Year:</strong> {book.ano_publicacao}
+                  <strong>Ano:</strong> {book.ano_publicacao}
                 </p>
+
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  <strong>Synopsis:</strong> <br /> {book.sinopse}
+                  <strong>Sinopse:</strong> <br /> {book.sinopse}
                 </p>
 
                 <span
@@ -118,10 +146,9 @@ export default function BookDetailsPage() {
                       : "bg-red-100 text-red-500"
                   }`}
                 >
-                  {isAvailable ? "Available" : "Unavailable"}
+                  {isAvailable ? "Disponível" : "Indisponível"}
                 </span>
 
-                {/* Reserve button */}
                 <button
                   onClick={handleReserve}
                   disabled={!isAvailable}
@@ -131,18 +158,12 @@ export default function BookDetailsPage() {
                       : "bg-gray-400 cursor-not-allowed"
                   }`}
                 >
-                  Reserve Book
+                  Reservar Livro
                 </button>
-
-                {message && (
-                  <p className="mt-4 text-center font-medium text-blue-700">
-                    {message}
-                  </p>
-                )}
               </div>
             </div>
           ) : (
-            <p className="text-center text-gray-600">Book not found.</p>
+            <p className="text-center text-gray-600">Livro não encontrado.</p>
           )}
         </main>
       </div>
