@@ -11,24 +11,30 @@ class AuthUserController {
     const { email, password } = req.body;
 
     try {
-      //Busca o usuário pelo e-mail
+      // Busca usuário pelo e-mail
       const usuario = await prisma.usuarios.findUnique({
         where: { email },
         include: { role: true },
       });
 
-
       if (!usuario) {
         return res.status(401).json({ erro: "Credenciais inválidas" });
       }
 
-      //Valida a senha
+      // 🚫 Impedir login de usuários bloqueados
+      if (usuario.status === "BLOQUEADO") {
+        return res.status(403).json({
+          erro: "Seu acesso foi bloqueado. Consulte a administração da biblioteca.",
+        });
+      }
+
+      // Valida a senha
       const senhaValida = await bcrypt.compare(password, usuario.password);
       if (!senhaValida) {
         return res.status(401).json({ erro: "Credenciais inválidas" });
       }
 
-      //Gera o token JWT com o campo `subject` (sub)
+      // Gera token JWT
       const token = jwt.sign(
         {
           email: usuario.email,
@@ -41,7 +47,6 @@ class AuthUserController {
         }
       );
 
-      //Retorna o token e os dados essenciais
       return res.status(200).json({
         mensagem: "Login realizado com sucesso!",
         token,
@@ -52,6 +57,7 @@ class AuthUserController {
           role: usuario.role.nome,
         },
       });
+
     } catch (error) {
       console.error("Erro no login:", error);
       return res.status(500).json({ erro: "Erro interno no servidor" });
