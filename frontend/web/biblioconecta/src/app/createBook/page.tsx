@@ -163,11 +163,7 @@ export default function CreateBookPage() {
               </div>
             </div>
 
-            {/* LADO DIREITO */}
             <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-
-              {/* Campos... (sem mudanças visuais) */}
-              {/* todo o restante do seu layout permanece igual */}
 
               <div className="md:col-span-2 mt-2 flex gap-3 justify-end">
                 <button

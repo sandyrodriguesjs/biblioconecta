@@ -58,8 +58,6 @@ export default function Register() {
       </h1>
 
       <form onSubmit={handleRegister} className="flex flex-col gap-4 w-full max-w-xs">
-        
-        {/* Nome */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <input
             type="text"
@@ -71,7 +69,6 @@ export default function Register() {
           />
         </div>
 
-        {/* Email */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <input
             type="email"
@@ -83,7 +80,6 @@ export default function Register() {
           />
         </div>
 
-        {/* Senha */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <input
             type="password"
@@ -95,7 +91,6 @@ export default function Register() {
           />
         </div>
 
-        {/* Botão */}
         <button
           type="submit"
           disabled={loading}

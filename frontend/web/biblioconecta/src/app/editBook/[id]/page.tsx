@@ -134,7 +134,6 @@ export default function EditBookPage() {
               onSubmit={handleSubmit}
               className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6 grid grid-cols-3 gap-6"
             >
-              {/* Coluna da capa */}
               <div>
                 <div className="w-40 h-60 rounded-lg overflow-hidden bg-gray-200 shadow">
                   <img
@@ -164,7 +163,6 @@ export default function EditBookPage() {
                 </button>
               </div>
 
-              {/* Dados do livro */}
               <div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="col-span-2">
                   <label className="font-semibold text-black">Título</label>

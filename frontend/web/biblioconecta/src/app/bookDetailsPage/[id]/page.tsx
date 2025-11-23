@@ -6,8 +6,6 @@ import NavBar from "../../components/navBar";
 import SideBar from "../../components/sideBar";
 import api from "@/api/axios";
 import { Loader2 } from "lucide-react";
-
-// 👉 Apenas SweetAlert2 puro
 import Swal from "sweetalert2";
 
 interface Exemplar {
@@ -37,7 +35,7 @@ export default function BookDetailsPage() {
   const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Buscar livro por ID
+  //Buscar livro por ID
   useEffect(() => {
     async function fetchBook() {
       try {
@@ -62,7 +60,7 @@ export default function BookDetailsPage() {
   const isAvailable =
     book?.exemplares?.some((ex) => ex.status === "DISPONIVEL") ?? false;
 
-  // 🔹 Função para reservar
+  //Função para reservar
   async function handleReserve() {
     if (!book) return;
 

@@ -21,7 +21,7 @@ export default function HomePage() {
 
   const categorias = ["Popular", "História", "Ciência", "Ação e Aventura", "Culinária"];
 
-  // 🔹 Busca livros do backend
+  //Busca livros do backend
   useEffect(() => {
     async function fetchLivros() {
       try {
@@ -39,7 +39,7 @@ export default function HomePage() {
     fetchLivros();
   }, []);
 
-  // 🔍 Filtro
+  //Filtro
   const livrosFiltrados = livros.filter((livro) => {
     const termoLower = termo.toLowerCase();
     const correspondeTermo =
@@ -62,7 +62,6 @@ export default function HomePage() {
         <NavBar />
 
         <main className="ml-56 p-8 space-y-10">
-          {/* 🏠 Carrossel */}
           <section className="relative w-full overflow-hidden rounded-2xl shadow-lg">
             <motion.div
               className="flex gap-4 animate-scroll-x"
@@ -87,7 +86,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* 🔍 Busca */}
           <div className="flex justify-between items-center gap-4">
             <input
               type="text"
@@ -102,27 +100,25 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* 🏷️ Categorias */}
           <div className="flex flex-wrap justify-center gap-4">
-            {categorias.map((cat) => (
+            {categorias.map((categoria) => (
               <button
-                key={cat}
+                key={categoria}
                 type="button"
                 onClick={() =>
-                  setCategoriaSelecionada((prev) => (prev === cat ? "" : cat))
+                  setCategoriaSelecionada((prev) => (prev === categoria ? "" : categoria))
                 }
                 className={`px-5 py-2 rounded-full border font-semibold transition ${
-                  categoriaSelecionada === cat
+                  categoriaSelecionada === categoria
                     ? "bg-blue-500 text-white border-blue-600"
                     : "bg-white border-gray-300 text-gray-800 hover:bg-blue-100"
                 }`}
               >
-                {cat}
+                {categoria}
               </button>
             ))}
           </div>
 
-          {/* 📚 Lista de livros */}
           <section>
             <h2 className="text-xl font-semibold text-gray-800 mb-4 border-b border-gray-300 pb-2">
               Todos os livros
@@ -149,7 +145,6 @@ export default function HomePage() {
             )}
           </section>
 
-          {/* 📖 Modal */}
           <BookModal
             isOpen={!!selectedBook}
             book={selectedBook}
