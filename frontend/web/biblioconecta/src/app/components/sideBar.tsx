@@ -1,9 +1,10 @@
 "use client";
 
-import { Home, BookCheck, LogOut, LibraryBig, UserRoundCog, BookAlert } from "lucide-react";
+import { Home, BookCheck, LibraryBig, UserRoundCog, BookAlert } from "lucide-react";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 interface DecodedToken {
   role: string;
@@ -24,6 +25,29 @@ export default function SideBar() {
       }
     }
   }, []);
+
+  const logout = async () => {
+    const confirm = await Swal.fire({
+      icon: "question",
+      title: "Deseja sair?",
+      showCancelButton: true,
+      confirmButtonText: "Sair",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#d33",
+    });
+
+    if (confirm.isConfirmed) {
+      localStorage.removeItem("token");
+      Swal.fire({
+        icon: "success",
+        title: "Você saiu da conta",
+        timer: 1200,
+        showConfirmButton: false,
+      }).then(() => {
+        window.location.href = "/";
+      });
+    }
+  };
 
   return (
     <aside className="fixed top-0 left-0 w-56 bg-[#1e1e2f] text-white h-screen flex flex-col justify-between">
@@ -59,11 +83,12 @@ export default function SideBar() {
         </nav>
       </div>
 
-      <div className="mb-6">
-        <button className="flex items-center gap-3 px-6 py-3 w-full hover:bg-[#2a2a3d] transition">
-          <LogOut size={20} /> Sair
-        </button>
-      </div>
+      <button
+        onClick={logout}
+        className="fixed bottom-6 left-6 z-50 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2"
+      >
+        Sair
+      </button>
     </aside>
   );
 }

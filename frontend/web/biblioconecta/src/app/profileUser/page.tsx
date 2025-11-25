@@ -150,29 +150,6 @@ export default function PerfilUsuarioPage() {
     }
   };
 
-  const handleSair = async () => {
-    const confirm = await Swal.fire({
-      icon: "question",
-      title: "Deseja sair?",
-      showCancelButton: true,
-      confirmButtonText: "Sair",
-      cancelButtonText: "Cancelar",
-      confirmButtonColor: "#d33",
-    });
-
-    if (confirm.isConfirmed) {
-      localStorage.removeItem("token");
-      Swal.fire({
-        icon: "success",
-        title: "Você saiu da conta",
-        timer: 1200,
-        showConfirmButton: false,
-      }).then(() => {
-        window.location.href = "/";
-      });
-    }
-  };
-
   return (
     <div className="relative min-h-screen bg-[#f5f8ff] flex">
       <div className="fixed top-0 left-0 z-50">
@@ -274,13 +251,6 @@ export default function PerfilUsuarioPage() {
           ) : null}
         </main>
       </div>
-
-      <button
-        onClick={handleSair}
-        className="fixed bottom-6 left-6 z-50 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2"
-      >
-        Sair
-      </button>
     </div>
   );
 }
