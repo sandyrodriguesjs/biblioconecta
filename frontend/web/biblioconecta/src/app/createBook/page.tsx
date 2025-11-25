@@ -6,8 +6,6 @@ import NavBar from "../components/navBar";
 import SideBar from "../components/sideBar";
 import api from "../../api/axios";
 import { Loader2, Upload, X } from "lucide-react";
-
-// 👉 Apenas SweetAlert2
 import Swal from "sweetalert2";
 
 export default function CreateBookPage() {
@@ -116,7 +114,7 @@ export default function CreateBookPage() {
             onSubmit={handleSubmit}
             className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6 grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            {/* LADO ESQUERDO */}
+            {/* COLUNA DA CAPA */}
             <div className="md:col-span-1">
               <div className="bg-gray-50 rounded-xl border border-gray-200 p-4 flex flex-col items-center">
                 <div className="w-40 h-60 rounded-lg overflow-hidden bg-gray-200 shadow flex items-center justify-center">
@@ -163,8 +161,96 @@ export default function CreateBookPage() {
               </div>
             </div>
 
+            {/* CAMPOS DO LIVRO */}
             <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
 
+              {/* ISBN */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">ISBN *</label>
+                <input
+                  type="text"
+                  value={isbn}
+                  onChange={(e) => setIsbn(e.target.value)}
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="9781234567890"
+                />
+              </div>
+
+              {/* Título */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Título *</label>
+                <input
+                  type="text"
+                  value={titulo}
+                  onChange={(e) => setTitulo(e.target.value)}
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Digite o título do livro"
+                />
+              </div>
+
+              {/* Autor */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Autor *</label>
+                <input
+                  type="text"
+                  value={autor}
+                  onChange={(e) => setAutor(e.target.value)}
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Nome do autor"
+                />
+              </div>
+
+              {/* Editora */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Editora</label>
+                <input
+                  type="text"
+                  value={editora}
+                  onChange={(e) => setEditora(e.target.value)}
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Nome da editora"
+                />
+              </div>
+
+              {/* Ano de Publicação */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Ano de Publicação *
+                </label>
+                <input
+                  type="number"
+                  value={anoPublicacao}
+                  onChange={(e) => setAnoPublicacao(e.target.value)}
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="2020"
+                />
+              </div>
+
+              {/* Categoria */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Categoria</label>
+                <input
+                  type="text"
+                  value={categoria}
+                  onChange={(e) => setCategoria(e.target.value)}
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Ex.: Romance, Fantasia, Técnico..."
+                />
+              </div>
+
+              {/* Sinopse */}
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700">Sinopse *</label>
+                <textarea
+                  value={sinopse}
+                  onChange={(e) => setSinopse(e.target.value)}
+                  rows={4}
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Escreva uma breve sinopse do livro..."
+                />
+              </div>
+
+              {/* Botões */}
               <div className="md:col-span-2 mt-2 flex gap-3 justify-end">
                 <button
                   type="button"
@@ -173,6 +259,7 @@ export default function CreateBookPage() {
                 >
                   Cancelar
                 </button>
+
                 <button
                   type="submit"
                   disabled={enviando}
