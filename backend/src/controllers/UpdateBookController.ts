@@ -4,7 +4,15 @@ import { UpdateBookService } from "../services/UpdateBookService";
 export class UpdateBookController {
   async handle(req: Request, res: Response) {
     const { id } = req.params;
-    const file = req.file; 
+    const userRole = (req as any).user?.role;
+
+    if (userRole !== "ADMIN") {
+      return res.status(403).json({
+        error: "Acesso negado, somente admins podem informações de livros!"
+      });
+    }
+
+    const file = req.file;
     const dados = req.body;
 
     try {

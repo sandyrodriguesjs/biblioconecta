@@ -7,8 +7,17 @@ export class GetAllUsersService {
   async execute() {
     const usuarios = await prisma.usuarios.findMany({
       include: {
-        role: {
-          select: { nome: true },
+        role: { select: { nome: true } },
+        emprestimos: {
+          where: {
+            data_devolucao: null, // Apenas empréstimos ativos
+          },
+          select: {
+            data_prevista_devolucao: true,
+          },
+          orderBy: {
+            data_prevista_devolucao: "asc",
+          },
         },
       },
       orderBy: {
@@ -16,13 +25,16 @@ export class GetAllUsersService {
       },
     });
 
-    return usuarios.map((usuario) => ({
-      id: usuario.id_usuario,
-      nome: usuario.name,
-      email: usuario.email,
-      status: usuario.status,
-      role: usuario.role?.nome,
-      data_cadastro: usuario.data_cadastro,
-    }));
+    return usuarios.map((usuario) => {
+      const activeLoan = usuario.emprestimos?.[0] ?? null;
+
+      return {
+        id: usuario.id_usuario,
+        name: usuario.name,
+        email: usuario.email,
+        status: usuario.status,
+        data_prevista_devolucao: activeLoan?.data_prevista_devolucao || null,
+      };
+    });
   }
 }

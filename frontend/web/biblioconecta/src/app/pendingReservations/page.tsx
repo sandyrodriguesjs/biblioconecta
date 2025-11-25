@@ -48,7 +48,7 @@ export default function ReservationsPendingAdminPage() {
     }
   }
 
-  async function aprovarReserva(id_reserva: number) {
+  async function aprovarReserva(reserva: ReservaPend) {
     const confirm = await Swal.fire({
       icon: "question",
       title: "Aprovar Empréstimo?",
@@ -61,13 +61,18 @@ export default function ReservationsPendingAdminPage() {
     if (!confirm.isConfirmed) return;
 
     try {
-      await api.post("/emprestimos", { id_reserva });
+      await api.post("/emprestimos", {
+        userId: reserva.usuario.id_usuario,
+        exemplarId: reserva.exemplar.id_exemplar,
+      });
+
       Swal.fire("Sucesso!", "Empréstimo criado.", "success");
       carregarReservas();
     } catch (error) {
       Swal.fire("Erro!", "Não foi possível aprovar a reserva.", "error");
     }
   }
+
 
   async function recusarReserva(id_reserva: number) {
     const confirm = await Swal.fire({
@@ -110,7 +115,7 @@ export default function ReservationsPendingAdminPage() {
               <Loader2 className="animate-spin w-8 h-8 text-blue-500" />
             </div>
           ) : (
-             <div className="bg-white shadow-md rounded-xl overflow-hidden">
+            <div className="bg-white shadow-md rounded-xl overflow-hidden">
               <table className="w-full text-left">
                 <thead className="bg-blue-600 text-white">
                   <tr>
@@ -145,11 +150,12 @@ export default function ReservationsPendingAdminPage() {
                       <td className="p-3 text-black text-center flex gap-2 justify-center">
                         {/* Aprovar */}
                         <button
-                          onClick={() => aprovarReserva(res.id_reserva)}
+                          onClick={() => aprovarReserva(res)}
                           className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg"
                         >
                           <Check size={18} />
                         </button>
+
 
                         {/* Recusar */}
                         <button

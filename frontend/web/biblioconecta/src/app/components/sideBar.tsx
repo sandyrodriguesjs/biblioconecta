@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, BookCheck, LogOut, LibraryBig, UserRoundCog } from "lucide-react";
+import { Home, BookCheck, LogOut, LibraryBig, UserRoundCog, BookAlert } from "lucide-react";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -49,6 +49,10 @@ export default function SideBar() {
 
               <Link href="/adminUsers" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
                 <UserRoundCog size={20} /> Gerenciar Usuários
+              </Link>
+
+              <Link href="/listLoansActive" className="flex items-center gap-3 px-6 py-3 hover:bg-[#2a2a3d] transition">
+                <BookAlert size={20} /> Emprestimos Ativos
               </Link>
             </>
           )}

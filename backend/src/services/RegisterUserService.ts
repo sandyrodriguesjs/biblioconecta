@@ -21,19 +21,37 @@ export async function registerUserService(dados: any) {
     throw new Error("Role padrão 'USER' não encontrada. Execute o seed inicial.");
   }
 
-  //4. Cria usuário com a role padrão
-  const novoUsuario = await prisma.usuarios.create({
-    data: {
-      name: dadosValidados.name,
-      email: dadosValidados.email,
-      password: senhaHash,
-      status: dadosValidados.status ?? "ativo",
-      id_role: roleUser.id_role,
-    },
-    include: {
-      role: true,
-    },
-  });
+  // Normaliza email (evita duplicatas por case/whitespace)
+  const email = String(dadosValidados.email).trim().toLowerCase();
 
-  return novoUsuario;
+  // Verifica se já existe usuário com esse email
+  const existente = await prisma.usuarios.findUnique({ where: { email } });
+  if (existente) {
+    throw new Error("E-mail já cadastrado. Faça login ou recupere a senha.");
+  }
+
+  //4. Cria usuário com a role padrão (tratando possíveis erros do Prisma)
+  try {
+    const novoUsuario = await prisma.usuarios.create({
+      data: {
+        name: dadosValidados.name,
+        email,
+        password: senhaHash,
+        status: dadosValidados.status ?? "ativo",
+        id_role: roleUser.id_role,
+      },
+      include: {
+        role: true,
+      },
+    });
+
+    return novoUsuario;
+  } catch (err: any) {
+    // Prisma unique constraint error
+    if (err?.code === 'P2002' && err?.meta?.target?.includes('email')) {
+      throw new Error('E-mail já cadastrado.');
+    }
+    // rethrow original error para debugging se for outro caso
+    throw err;
+  }
 }

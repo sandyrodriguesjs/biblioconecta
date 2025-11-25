@@ -15,10 +15,10 @@ export class RenovarEmprestimoService {
 
     const bookId = loan.exemplar.id_livro;
 
-    const reservation = await this.repo.findReservationForOtherUser(bookId, loan.id_usuario);
-    if (reservation) {
-      throw new Error("Não é possível renovar: há reservas para outros usuários.");
-    }
+    // const reservation = await this.repo.findReservationForOtherUser(bookId, loan.id_usuario);
+    // if (reservation) {
+    //   throw new Error("Não é possível renovar: há reservas para outros usuários.");
+    // }
 
     const newDate = new Date();
     newDate.setDate(newDate.getDate() + 14);

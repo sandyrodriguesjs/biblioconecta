@@ -7,6 +7,14 @@ class BlockUserController {
     try {
       const { id } = req.params;
 
+      const userRole = (req as any).user?.role;
+
+      if (userRole !== "ADMIN") {
+        return res.status(403).json({
+          error: "Acesso negado, somente admins podem bloquear usuários!"
+        });
+      }
+
       const service = new BlockUserIfLateService();
       const result = await service.execute(Number(id));
 

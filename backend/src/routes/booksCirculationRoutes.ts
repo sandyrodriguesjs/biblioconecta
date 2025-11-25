@@ -2,7 +2,6 @@ import { Router } from "express";
 import { isAuthenticated } from "../middlewares/IsAuthenticated";
 import { createEmprestimoController } from "../controllers/CreateEmprestimoController";
 import { registerDevolucaoController } from "../controllers/RegisterDevolucaoController";
-import { renovarEmprestimoController } from "../controllers/RenovarEmprestimoController";
 import { listPendingReservationsController } from "../controllers/ListPendingReservationController";
 import { reservationDeleteController } from "../controllers/ReservationDeleteController";
 
@@ -18,12 +17,6 @@ router.post(
     "/emprestimos/:id/devolucao",
     isAuthenticated.handle.bind(isAuthenticated),
     registerDevolucaoController.handle.bind(registerDevolucaoController)
-);
-
-router.post(
-    "/emprestimos/:id/renovar",
-    isAuthenticated.handle.bind(isAuthenticated),
-    renovarEmprestimoController.handle.bind(renovarEmprestimoController)
 );
 
 router.get(

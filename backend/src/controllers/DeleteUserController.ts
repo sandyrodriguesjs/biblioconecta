@@ -8,9 +8,10 @@ export class DeleteUserController {
       const { id } = req.params;
       const userRole = (req as any).user?.role;
 
-      //Verifica permissão
       if (userRole !== "ADMIN") {
-        return res.status(403).json({ error: "Acesso negado, somente admins podem deletar usuários!" });
+        return res.status(403).json({
+          error: "Acesso negado, somente admins podem deletar usuários!"
+        });
       }
 
       const service = new DeleteUserService();

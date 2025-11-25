@@ -5,11 +5,11 @@ export class CreateEmprestimoController {
   async handle(req: Request, res: Response) {
     try {
       // Verifica se o admin está logado
-      // const userRole = (req as any).role;
+      const userRole = (req as any).role;
 
-      // if (userRole !== "ADMIN") {
-      //   return res.status(403).json({ error: "Apenas administradores podem registrar empréstimos." });
-      // }
+      if (userRole !== "ADMIN") {
+        return res.status(403).json({ error: "Apenas administradores podem registrar empréstimos." });
+      }
 
       let { userId, exemplarId } = req.body;
 
