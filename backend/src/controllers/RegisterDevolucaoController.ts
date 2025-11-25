@@ -5,12 +5,14 @@ export class RegisterDevolucaoController {
   async handle(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const userRole = (req as any).role;
+      const userRole = (req as any).user?.role;
 
       if (userRole !== "ADMIN") {
-        return res.status(403).json({ error: "Apenas administradores podem registrar devolução de livros." });
+        res.status(403).json({
+          error: "Acesso negado, somente admins podem registrar devolução de um livro!"
+        });
+        return;
       }
-
       const service = new RegisterDevolucaoService();
       const result = await service.execute(Number(id));
       return res.json(result);

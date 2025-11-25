@@ -11,13 +11,11 @@ interface BookCardProps {
 const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
   const router = useRouter();
 
-  // 🔹 Abre o modal (ver resumo)
   const handleVerResumo = (e: React.MouseEvent) => {
     e.stopPropagation();
     onClick(book);
   };
 
-  // 🔹 Redireciona para página de detalhes
   const handleVerDetalhes = (e: React.MouseEvent) => {
     e.stopPropagation();
     router.push(`/bookDetailsPage/${book.id_livro}`);
@@ -30,7 +28,6 @@ const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
                  shadow-lg rounded-xl overflow-hidden 
                  hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
     >
-      {/* 📘 Capa do livro */}
       <div className="relative w-full h-64 overflow-hidden">
         <img
           src={book.capa_url ?? "/default-book-cover.png"}
@@ -45,7 +42,6 @@ const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
         </div>
       </div>
 
-      {/* 📝 Sinopse + Botões */}
       <div className="p-4 flex flex-col justify-between flex-grow">
         <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed line-clamp-4 mb-4">
           {book.sinopse || "Sinopse não disponível."}
