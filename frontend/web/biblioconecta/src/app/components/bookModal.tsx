@@ -1,7 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import type { Book } from "../types/books";
 
 interface BookModalProps {
@@ -11,8 +10,6 @@ interface BookModalProps {
 }
 
 export default function BookModal({ isOpen, onClose, book }: BookModalProps) {
-  const router = useRouter();
-
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
@@ -21,85 +18,53 @@ export default function BookModal({ isOpen, onClose, book }: BookModalProps) {
 
   const b = book;
 
-  function handleReservar() {
-    router.push(`/reserveBook?titulo=${encodeURIComponent(b.titulo)}`);
-    onClose();
-  }
-
   return (
     <AnimatePresence>
-      {isOpen && book && (
+      {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
+          // ⬆️ Sem cor de fundo — totalmente transparente
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
           <motion.div
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-[90%] max-w-3xl p-6 relative overflow-y-auto max-h-[90vh]"
-            initial={{ scale: 0.9, opacity: 0 }}
+            className="bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-2xl w-[85%] max-w-md p-6 relative flex flex-col items-center text-center backdrop-blur-xl"
+            // ⬆️ Glassmorphism suave
+            initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
+            exit={{ scale: 0.85, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Conteúdo */}
-            <div className="grid grid-cols-2 gap-y-2">
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={b.capa_url || "/placeholder-book.png"}
-                  alt={b.titulo}
-                  className="w-28 h-40 object-cover rounded-md bg-gray-200"
-                />
-                <div>
-                  <h2 className="text-2xl font-bold">{b.titulo}</h2>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {b.autor}
-                  </p>
-                </div>
-              </div>
+            {/* IMAGEM EM DESTAQUE */}
+            <img
+              src={b.capa_url || "/placeholder-book.png"}
+              alt={b.titulo}
+              className="w-40 h-60 object-cover rounded-xl shadow-md mb-4"
+            />
 
-              <div>
-                <span
-                  className={`block mt-4 text-right text-lg font-semibold ${
-                    b.exemplares?.some((e) => e.situacao === "disponivel")
-                      ? "text-green-600"
-                      : "text-red-500"
-                  }`}
-                >
-                  {b.exemplares?.some((e) => e.situacao === "disponivel")
-                    ? "Disponível"
-                    : "Indisponível"}
-                </span>
+            {/* TÍTULO E AUTOR */}
+            <h2 className="text-2xl font-bold mb-1">{b.titulo}</h2>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+              {b.autor}
+            </p>
 
-                <div className="flex gap-3 mt-6">
-                  {b.exemplares?.some((e) => e.situacao === "disponivel") ? (
-                    <button
-                      onClick={handleReservar}
-                      className="flex-1 px-5 py-2 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition"
-                    >
-                      Reservar
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => alert("Você entrou na fila de espera!")}
-                      className="flex-1 px-5 py-2 bg-gray-400 text-white font-semibold rounded-xl hover:bg-gray-500 transition"
-                    >
-                      Entrar na Fila de Espera
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-y-2 text-sm mt-6">
-              <p><strong>Título:</strong> {b.titulo}</p>
-              <p><strong>Autor:</strong> {b.autor}</p>
+            {/* INFORMAÇÕES */}
+            <div className="text-sm space-y-1 w-full">
               <p><strong>ISBN:</strong> {b.isbn}</p>
               <p><strong>Editora:</strong> {b.editora}</p>
-              <p><strong>Ano de publicação:</strong> {b.ano_publicacao}</p>
+              <p><strong>Ano:</strong> {b.ano_publicacao}</p>
               <p><strong>Categoria:</strong> {b.categoria}</p>
             </div>
+
+            {/* BOTÃO FECHAR */}
+            <button
+              onClick={onClose}
+              className="mt-6 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm"
+            >
+              Fechar
+            </button>
           </motion.div>
         </motion.div>
       )}
