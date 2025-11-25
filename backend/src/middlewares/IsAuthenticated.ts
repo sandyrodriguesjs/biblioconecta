@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || "minha_chave_super_secreta";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 interface CustomJwtPayload extends JwtPayload {
   sub: string;
@@ -17,6 +17,8 @@ class IsAuthenticated {
     next: NextFunction
   ): Promise<Response | void> {
     try {
+      if (!JWT_SECRET) throw new Error("JWT_SECRET não definido no ambiente");
+
       const authHeader = req.headers.authorization;
 
       if (!authHeader) {
