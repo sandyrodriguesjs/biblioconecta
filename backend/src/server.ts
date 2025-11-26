@@ -39,7 +39,7 @@ app.use("/", booksRoutes);
 app.use("/", booksCirculationRoutes);
 app.use("/", emprestimosRoutes);
 
-const PORT = process.env.PORT || 3333;
+const PORT = 3333;
 app.listen(PORT, () =>
   console.log(`🚀 Servidor rodando na porta ${PORT}`)
 );
