@@ -29,9 +29,9 @@ const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
                  shadow-lg rounded-xl overflow-hidden 
                  hover:shadow-xl transition-all duration-300 hover:-translate-y-1 
                  flex flex-col 
-                 h-[420px]" 
+                 h-[420px]"
     >
-      <div className="relative w-full h-56 overflow-hidden">
+      <div className="relative w-full h-56 overflow-hidden flex-shrink-0">
         <img
           src={book.capa_url ?? "/default-book-cover.png"}
           alt={book.titulo}
@@ -46,15 +46,15 @@ const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
         </div>
       </div>
 
-      <div className="p-4 flex flex-col justify-between flex-grow">
-        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed 
-                      line-clamp-4 
-                      h-[70px] 
-                      overflow-hidden mb-4">
+      <div className="p-4 flex flex-col justify-between flex-1">
+        <p
+          className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed overflow-hidden line-clamp-4"
+          style={{ minHeight: "80px" }}
+        >
           {book.sinopse || "Sinopse não disponível."}
         </p>
 
-        <div className="flex gap-2 mt-auto">
+        <div className="flex gap-2 mt-auto pt-2">
           <button
             onClick={handleVerResumo}
             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 rounded-lg transition"
