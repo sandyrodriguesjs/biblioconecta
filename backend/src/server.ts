@@ -33,6 +33,10 @@ app.use(
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("API BiblioConecta funcionando 🚀");
+});
+
 // Rotas
 app.use("/", userRoutes);
 app.use("/", booksRoutes);
