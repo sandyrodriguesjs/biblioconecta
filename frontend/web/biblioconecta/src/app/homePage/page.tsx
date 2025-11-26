@@ -8,7 +8,7 @@ import BookCard from "@/app/components/bookCard";
 import BookModal from "@/app/components/bookModal";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import api from "@/api/axios"; 
+import api from "@/api/axios";
 import type { Book } from "../types/books";
 
 export default function HomePage() {
@@ -21,13 +21,11 @@ export default function HomePage() {
 
   const categorias = ["Popular", "História", "Ciência", "Ação e Aventura", "Culinária"];
 
-  //Busca livros do backend
   useEffect(() => {
     async function fetchLivros() {
       try {
         setLoading(true);
         const response = await api.get("/livros");
-        console.log("Livros buscados:", response.data);
         setLivros(response.data);
       } catch (error: any) {
         console.error("Erro ao buscar livros:", error);
@@ -39,7 +37,6 @@ export default function HomePage() {
     fetchLivros();
   }, []);
 
-  //Filtro
   const livrosFiltrados = livros.filter((livro) => {
     const termoLower = termo.toLowerCase();
     const correspondeTermo =
@@ -58,7 +55,7 @@ export default function HomePage() {
     <div className="flex min-h-screen bg-[#f5f8ff]">
       <SideBar />
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-y-auto max-h-screen">
         <NavBar />
 
         <main className="ml-56 p-8 space-y-10">
@@ -131,7 +128,7 @@ export default function HomePage() {
             ) : livrosFiltrados.length === 0 ? (
               <p className="text-center text-gray-600">Nenhum livro encontrado.</p>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 pb-10">
                 {livrosFiltrados.map((livro) => (
                   <motion.div
                     key={`livro-${livro.id_livro}-${livro.isbn}`}
