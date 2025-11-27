@@ -156,8 +156,6 @@ export default function ReservationsPendingAdminPage() {
                           <Check size={18} />
                         </button>
 
-
-                        {/* Recusar */}
                         <button
                           onClick={() => recusarReserva(res.id_reserva)}
                           className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg"
