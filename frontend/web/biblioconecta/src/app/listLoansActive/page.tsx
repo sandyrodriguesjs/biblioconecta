@@ -69,7 +69,7 @@ export default function ActiveLoansPage() {
                 text: "O livro foi devolvido com sucesso.",
             });
 
-            carregarEmprestimos(); // Atualiza a tabela
+            carregarEmprestimos();
         } catch (error) {
             Swal.fire("Erro!", "Não foi possível registrar a devolução.", "error");
         }

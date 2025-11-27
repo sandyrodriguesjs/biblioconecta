@@ -28,7 +28,6 @@ export default function Login() {
 
       localStorage.setItem("token", token);
 
-      // 🎉 SUCESSO
       Swal.fire({
         icon: "success",
         title: "Login realizado!",
@@ -43,7 +42,6 @@ export default function Login() {
     } catch (err: any) {
       console.error(err);
 
-      // ❌ ERRO
       Swal.fire({
         icon: "error",
         title: "Falha ao entrar",
@@ -67,7 +65,6 @@ export default function Login() {
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 w-full max-w-xs"
       >
-        {/* Email */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <Mail className="w-5 h-5 text-gray-500 mr-2" />
           <input
@@ -80,7 +77,6 @@ export default function Login() {
           />
         </div>
 
-        {/* Senha */}
         <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
           <Lock className="w-5 h-5 text-gray-500 mr-2" />
           <input
@@ -93,7 +89,6 @@ export default function Login() {
           />
         </div>
 
-        {/* Botão Login */}
         <button
           type="submit"
           disabled={loading}
@@ -101,8 +96,7 @@ export default function Login() {
         >
           {loading ? "Entrando..." : "Entrar →"}
         </button>
-
-        {/* Botão cadastrar */}
+        
         <Link href="/registerPage" className="w-full">
           <button
             type="button"

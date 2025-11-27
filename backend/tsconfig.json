@@ -1,8 +1,7 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "module": "commonjs", // <--- alterar de node20 para commonjs
-    "moduleResolution": "node", // <--- alterar de node16 para node
+    "module": "commonjs",
+    "moduleResolution": "node",
     "target": "ESNext",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

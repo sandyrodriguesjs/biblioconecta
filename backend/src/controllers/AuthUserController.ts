@@ -11,7 +11,6 @@ class AuthUserController {
     const { email, password } = req.body;
 
     try {
-      // Busca usuário pelo e-mail
       const usuario = await prisma.usuarios.findUnique({
         where: { email },
         include: { role: true },
@@ -21,20 +20,17 @@ class AuthUserController {
         return res.status(401).json({ erro: "Credenciais inválidas" });
       }
 
-      // 🚫 Impedir login de usuários bloqueados
       if (usuario.status === "BLOQUEADO") {
         return res.status(403).json({
           erro: "Seu acesso foi bloqueado. Consulte a administração da biblioteca.",
         });
       }
 
-      // Valida a senha
       const senhaValida = await bcrypt.compare(password, usuario.password);
       if (!senhaValida) {
         return res.status(401).json({ erro: "Credenciais inválidas" });
       }
 
-      // Gera token JWT
       const token = jwt.sign(
         {
           email: usuario.email,

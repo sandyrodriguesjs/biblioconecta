@@ -10,7 +10,7 @@ export class GetAllUsersService {
         role: { select: { nome: true } },
         emprestimos: {
           where: {
-            data_devolucao: null, // Apenas empréstimos ativos
+            data_devolucao: null,
           },
           select: {
             data_prevista_devolucao: true,

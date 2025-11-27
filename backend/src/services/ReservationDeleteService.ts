@@ -12,13 +12,11 @@ export class ReservationDeleteService {
       throw new Error("Reserva não encontrada.");
     }
 
-    // Exemplar volta para DISPONIVEL
     await prisma.exemplares.update({
       where: { id_exemplar: reserva.id_exemplar },
       data: { status: "DISPONIVEL" }
     });
 
-    // Deletar reserva
     await prisma.reservas.delete({
       where: { id_reserva }
     });

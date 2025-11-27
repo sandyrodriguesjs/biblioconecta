@@ -10,11 +10,10 @@ const app = express();
 const prisma = new PrismaClient();
 
 const allowedOrigins = [
-  "http://localhost:3000",               // Ambiente de desenvolvimento
-  "https://biblioconecta.vercel.app",   // Produção (Vercel)
+  "http://localhost:3000",              
+  "https://biblioconecta.vercel.app", 
 ];
 
-//CORS dinâmico
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -37,7 +36,6 @@ app.get("/", (req, res) => {
   res.send("API BiblioConecta funcionando 🚀");
 });
 
-// Rotas
 app.use("/", userRoutes);
 app.use("/", booksRoutes);
 app.use("/", booksCirculationRoutes);

@@ -8,7 +8,6 @@ export class GetBooksController {
     this.listLivrosService = new GetBooksService();
   }
 
-  //GET /livros - Lista todos
   async listAll(req: Request, res: Response): Promise<void> {
     try {
       const livros = await this.listLivrosService.listAllBooks();
@@ -18,7 +17,6 @@ export class GetBooksController {
     }
   }
 
-  //GET /livros/:id - Lista por ID
   async listById(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 

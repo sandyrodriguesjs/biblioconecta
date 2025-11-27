@@ -112,10 +112,10 @@ export default function UserAdminPage() {
         const diff = prevista.getTime() - hoje.getTime();
         const dias = diff / (1000 * 3600 * 24);
 
-        if (dias < 0) return "text-red-600 font-bold";         // atrasado
-        if (dias <= 3) return "text-yellow-600 font-semibold";  // próximo do vencimento
+        if (dias < 0) return "text-red-600 font-bold";      
+        if (dias <= 3) return "text-yellow-600 font-semibold";
 
-        return "text-green-700 font-medium";                   // OK
+        return "text-green-700 font-medium";
     }
 
     function formatarData(data?: string) {

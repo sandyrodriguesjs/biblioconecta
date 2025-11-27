@@ -28,7 +28,6 @@ export default function EditBookPage() {
 
   const [loading, setLoading] = useState(true);
 
-  // Buscar dados do livro
   useEffect(() => {
     async function carregarLivro() {
       try {
@@ -61,7 +60,6 @@ export default function EditBookPage() {
     carregarLivro();
   }, [idLivro]);
 
-  // Upload da capa
   const handleCapaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
     setCapaFile(file);
@@ -73,7 +71,6 @@ export default function EditBookPage() {
     setCapaPreview("/default-book-cover.png");
   };
 
-  // Enviar atualização
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 

@@ -26,12 +26,10 @@ export default function PerfilUsuarioPage() {
   const [atualizando, setAtualizando] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  //Buscar dados do usuário
   const buscarDadosUsuario = async () => {
     try {
       setCarregando(true);
 
-      // Dados do usuário
       const { data } = await api.get("/me");
       setUsuario({
         nome: data.name,
@@ -39,7 +37,6 @@ export default function PerfilUsuarioPage() {
         foto: data.foto ?? null,
       });
 
-      //Buscar histórico real do mês atual
       const historyResponse = await api.get("/reading-history/current-month");
 
       setHistorico(
@@ -185,7 +182,6 @@ export default function PerfilUsuarioPage() {
                     </div>
                   )}
 
-                  {/* Botões */}
                   <div className="absolute -bottom-2 right-0 flex gap-2">
                     <button
                       onClick={() => inputRef.current?.click()}

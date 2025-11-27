@@ -28,17 +28,14 @@ export class UpdateUserService {
       throw new Error("Usuário não encontrado");
     }
 
-    //Hash da senha, se houver alteração
     let hashedPassword;
     if (password) {
       hashedPassword = await bcrypt.hash(password, 10);
     }
 
-    //Upload da nova foto, se enviada
     let fotoURL = user.foto_url;
 
     if (fotoFilePath) {
-      // Se já tinha foto, remove do Cloudinary
       if (user.foto_url) {
         const publicId = user.foto_url.split("/").pop()?.split(".")[0];
         if (publicId) {
@@ -46,7 +43,6 @@ export class UpdateUserService {
         }
       }
 
-      // Upload nova foto
       const upload = await cloudinary.uploader.upload(fotoFilePath, {
         folder: "usuarios",
       });
@@ -56,7 +52,6 @@ export class UpdateUserService {
       fs.unlinkSync(fotoFilePath);
     }
 
-    //Atualiza o usuário
     const updatedUser = await prisma.usuarios.update({
       where: { id_usuario: userId },
       data: {

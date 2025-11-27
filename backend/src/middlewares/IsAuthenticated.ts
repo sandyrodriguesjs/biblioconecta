@@ -31,7 +31,6 @@ class IsAuthenticated {
         return res.status(401).json({ erro: "Formato do token inválido" });
       }
 
-      // Decodifica o token
       const decoded = jwt.verify(token, JWT_SECRET) as CustomJwtPayload;
 
       if (!decoded.sub) {
@@ -44,7 +43,6 @@ class IsAuthenticated {
         role: decoded.role,
       };
 
-      // Caso você ainda precise de req.user_id
       (req as any).user_id = decoded.sub;
 
       return next();

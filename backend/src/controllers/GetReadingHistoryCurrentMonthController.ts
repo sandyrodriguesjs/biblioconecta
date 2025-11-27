@@ -5,7 +5,6 @@ import { GetReadingHistoryCurrentMonthService } from "../services/GetReadingHist
 class GetReadingHistoryCurrentMonthController {
   async handle(req: Request, res: Response) {
     try {
-      //  //ID do usuário vem do middleware de autenticação
       const { user_id } = req;
 
       if (!user_id) {

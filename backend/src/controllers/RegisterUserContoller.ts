@@ -6,7 +6,6 @@ class RegisterUserController {
     try {
       const novoUsuario = await registerUserService(req.body);
 
-      //Remove o campo de senha antes de enviar a resposta
       const { password, ...usuarioSemSenha } = novoUsuario;
 
       return res.status(201).json({

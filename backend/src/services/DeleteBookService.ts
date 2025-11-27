@@ -13,12 +13,10 @@ export class DeleteBookService {
       throw new Error("Livro não encontrado");
     }
 
-    //Deleta reservas relacionadas
     await prisma.reservas.deleteMany({
       where: { id_livro: id }
     });
 
-    //Deleta exemplares relacionados
     await prisma.exemplares.deleteMany({
       where: { id_livro: id }
     });

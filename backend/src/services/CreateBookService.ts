@@ -23,7 +23,6 @@ export class CreateBookService {
 
     let capa_url: string | undefined = undefined;
 
-    //SE vier arquivo, faz upload para o Cloudinary
     if (data.capa_url) {
       const uploadResult = await cloudinary.uploader.upload(data.capa_url, {
         folder: "biblioteca/livros",
@@ -31,11 +30,9 @@ export class CreateBookService {
 
       capa_url = uploadResult.secure_url;
 
-      // Remove arquivo temporário
       fs.unlinkSync(data.capa_url);
     }
 
-    //Verifica ISBN
     const already = await prisma.livros.findUnique({
       where: { isbn: validatedData.isbn },
     });
@@ -44,7 +41,6 @@ export class CreateBookService {
       throw new Error("Livro com este ISBN já está cadastrado.");
     }
 
-    //Cria o livro
     const novoLivro = await prisma.livros.create({
       data: {
         ...validatedData,
@@ -52,7 +48,6 @@ export class CreateBookService {
       },
     });
 
-    //Cria exemplar
     const codigo_exemplar = `EXEMP-${novoLivro.id_livro}-${Date.now()}`;
 
     const novoExemplar = await prisma.exemplares.create({

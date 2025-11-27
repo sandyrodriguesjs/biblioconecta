@@ -5,7 +5,6 @@ import { getEmprestimosController } from "../controllers/GetEmprestimoController
 
 const router = Router();
 
-// 📌 Listar todos os empréstimos (ADMIN)
 router.get(
   "/emprestimos",
   isAuthenticated.handle.bind(isAuthenticated),

@@ -5,7 +5,6 @@ import { GetUserDetailsService } from "../services/GetUserDetailsService";
 class GetUserDetailsController {
   async handle(req: Request, res: Response) {
     try {
-      //ID do usuário vem do middleware de autenticação
       const { user_id } = req;
 
       if (!user_id) {
