@@ -114,7 +114,6 @@ export default function CreateBookPage() {
             onSubmit={handleSubmit}
             className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6 grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            {/* COLUNA DA CAPA */}
             <div className="md:col-span-1">
               <div className="bg-gray-50 rounded-xl border border-gray-200 p-4 flex flex-col items-center">
                 <div className="w-40 h-60 rounded-lg overflow-hidden bg-gray-200 shadow flex items-center justify-center">
@@ -161,10 +160,7 @@ export default function CreateBookPage() {
               </div>
             </div>
 
-            {/* CAMPOS DO LIVRO */}
             <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-
-              {/* ISBN */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">ISBN *</label>
                 <input
@@ -176,7 +172,6 @@ export default function CreateBookPage() {
                 />
               </div>
 
-              {/* Título */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">Título *</label>
                 <input
@@ -188,7 +183,6 @@ export default function CreateBookPage() {
                 />
               </div>
 
-              {/* Autor */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">Autor *</label>
                 <input
@@ -200,7 +194,6 @@ export default function CreateBookPage() {
                 />
               </div>
 
-              {/* Editora */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">Editora</label>
                 <input
@@ -212,7 +205,6 @@ export default function CreateBookPage() {
                 />
               </div>
 
-              {/* Ano de Publicação */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Ano de Publicação *
@@ -226,7 +218,6 @@ export default function CreateBookPage() {
                 />
               </div>
 
-              {/* Categoria */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">Categoria</label>
                 <input
@@ -238,7 +229,6 @@ export default function CreateBookPage() {
                 />
               </div>
 
-              {/* Sinopse */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">Sinopse *</label>
                 <textarea
@@ -250,7 +240,6 @@ export default function CreateBookPage() {
                 />
               </div>
 
-              {/* Botões */}
               <div className="md:col-span-2 mt-2 flex gap-3 justify-end">
                 <button
                   type="button"
