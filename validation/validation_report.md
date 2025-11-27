@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="./assets/unifor.png" width="220" alt="Logo Unifor">
+  <img src="../validação/assets/unifor.png" width="220">
+
 </p>
 
 <h1 align="center">Relatório de Validação — Projeto BiblioConecta</h1>
@@ -21,7 +22,7 @@ O objetivo desta etapa é coletar feedback técnico, identificar oportunidades d
 # 🖼️ Momento de Validação
 
 <p align="center">
-  <img src="./assets/apresentacao.JPG" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
+  <img src="../validação/assets/apresentacao.JPG" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
 </p>
 
 <br/>
@@ -150,4 +151,5 @@ Pendente
 
 
 ---
+
 
