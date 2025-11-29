@@ -185,6 +185,8 @@ Para complementar a análise realizada com as bibliotecárias da Unifor, foram c
   - **Data da reserva**  
   - **Data prevista para devolução**
 - Pontuou a necessidade de definir **suspensão da conta** em casos de atrasos, garantindo organização na circulação de livros.
+- Pontuou que seria interessante integrar com o sistema de cadastro dos condôminos.
+- Destacou que categorias como “história popular” ou “ciência” podem ser muito amplas ou pouco claras, recomendando que o sistema utilize classificações mais comuns e familiares aos leitores, tais como: Ação, Aventura, Romance, Suspense / Mistério, Fantasia, Ficção Científica, Infantil, Autoajuda, Biografia, etc. Essas categorias, segundo a usuária, tornam a navegação mais simples e facilitam a identificação rápida do tipo de livro buscado.Além disso, ela reforçou que, caso desejado, o administrador do condomínio poderia incluir novas categorias conforme a necessidade do acervo — garantindo flexibilidade e escalabilidade ao sistema. 
 - Sugeriu que o projeto **comece com um público-alvo mais específico**, como:
   - condomínios residenciais,
   - pequenos grupos comunitários,
@@ -226,6 +228,7 @@ A validação reforça que o BiblioConecta tem espaço real de aplicação imedi
 - projetos locais de fomento à leitura.
 
 As contribuições serão incorporadas nas próximas etapas de desenvolvimento, alinhando o sistema às necessidades identificadas pelos primeiros usuários reais.
+
 
 
 
