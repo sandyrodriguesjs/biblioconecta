@@ -144,13 +144,90 @@ As sugestões serão incorporadas às próximas etapas do desenvolvimento, garan
 
 ---
 
-# 👤 Validação com Usuário (A ser realizada)
+# 👤 Validação com Usuários
 
-Pendente
-
-
+Para complementar a análise realizada com as bibliotecárias da Unifor, foram conduzidas validações com usuários reais do público-alvo potencial do BiblioConecta. O objetivo foi identificar percepções sobre aplicabilidade, usabilidade e aderência da solução em cenários reais.
 
 ---
+
+## 🧍‍♀️ Usuária 1 — **Rayza Alves Marques**
+
+- **Moradora do Condomínio Smille Village**  
+- **Endereço:** Rua do Parque, 333 — Fortaleza/CE  
+- **Contexto:** O condomínio possui uma iniciativa de *biblioteca comunitária interna*, onde moradores podem doar livros que ficam armazenados na sala de estudos.  
+- **Modalidade da validação:** Reunião via Google Meet  
+- **Foto:** *(opcional)*
+
+### 📌 Principais Observações
+
+- Considerou o projeto **extremamente interessante e aplicável** ao condomínio.
+- Disse que o sistema agregaria muito ao espaço compartilhado, facilitando o uso da biblioteca comunitária.
+- Destacou que, com o BiblioConecta:
+  - O **administrador do condomínio** poderia cadastrar todo o acervo.
+  - Os **moradores poderiam consultar a disponibilidade** antes de descer para pegar o livro.
+- Enfatizou que o sistema **traz organização e praticidade**, algo que falta hoje no modelo atual do condomínio.
+- Acredita que poderia incentivar ainda mais o uso do espaço e a circulação dos livros.
+
+---
+
+## 🧍‍♀️ Usuária 2 — **Rafaela Holanda Coelho**
+
+- **Estudante de Medicina**  
+- **Universidade Christus (Unichristus)**  
+- **Endereço:** Rua Eduardo Garcia, 888 — Fortaleza/CE  
+- **Participação:** Presente na reunião de validação junto com Rayza  
+- **Foto:** *(opcional)*
+
+### 📌 Principais Observações
+
+- Parabenizou a iniciativa e afirmou que a proposta é **útil, atual e necessária**.
+- Reforçou a importância de incluir no sistema:
+  - **Data da reserva**  
+  - **Data prevista para devolução**
+- Pontuou a necessidade de definir **suspensão da conta** em casos de atrasos, garantindo organização na circulação de livros.
+- Sugeriu que o projeto **comece com um público-alvo mais específico**, como:
+  - condomínios residenciais,
+  - pequenos grupos comunitários,
+  - espaços compartilhados de estudo,
+  pois o acervo é menor, mais simples de administrar e o fluxo é controlado.
+
+### 🎯 Justificativa da sugestão:
+- Para bibliotecas comunitárias maiores, o acervo costuma ser extenso e o volume de empréstimos mais desafiador.
+- Em condomínios, o sistema seria **mais simples de implementar**, semelhante à lógica de “mercadinhos dentro do condomínio”.
+- O fluxo menor permitiria medir impacto e evoluir o sistema com mais segurança.
+
+---
+
+# 🧩 Síntese da Validação com Usuários
+
+A validação confirmou que o BiblioConecta:
+
+- é percebido como útil e aplicável em ambientes reais;  
+- tem potencial imediato para condomínios e pequenos acervos;  
+- promove organização e praticidade no empréstimo de livros;  
+- pode ser implementado por administradores, síndicos ou grupos de moradores;  
+- possui funcionalidades desejadas pelos usuários iniciais, como:
+  - consulta remota do acervo,
+  - gestão de prazo de reserva,
+  - datas de devolução,
+  - política clara de atraso.
+
+Além disso, os usuários reforçaram que o projeto **está no caminho certo** e possui capacidade de expansão futura para bibliotecas de maior porte.
+
+---
+
+# 🏁 Conclusão da Validação com Usuários
+
+A validação reforça que o BiblioConecta tem espaço real de aplicação imediata em:
+
+- condomínios residenciais,  
+- salas de estudo com acervos compartilhados,  
+- pequenas iniciativas comunitárias,  
+- projetos locais de fomento à leitura.
+
+As contribuições serão incorporadas nas próximas etapas de desenvolvimento, alinhando o sistema às necessidades identificadas pelos primeiros usuários reais.
+
+
 
 
 
