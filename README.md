@@ -30,7 +30,37 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 | Filtro por categoria  | ✔ Implementado no Frontend |
 | Perfil do usuário     | ✔ Implementado             |
 | Hitórico Mensal       | ✔ Implementado             |
-    de livros lidos
+
+## 💻 Telas do Sistema (Web)
+
+### 👤 Telas do Usuário
+
+<p align="center">
+  <img src="./validation/screenshot/login.jpg" width="400"/>
+  <img src="./validation/screenshot/home.jpg" width="400"/>
+  <img src="./validation/screenshot/cardlivro.jpg" width="400"/>
+</p>
+
+<p align="center">
+  <img src="./validation/screenshot/detalheslivro.jpg" width="400"/>
+  <img src="./validation/screenshot/perfilusuario.jpg" width="400"/>
+</p>
+
+---
+
+### 🛠️ Telas do Administrador
+
+<p align="center">
+  <img src="./validation/screenshot/acervo.jpg" width="400"/>
+  <img src="./validation/screenshot/gerenciamento.jpg" width="400"/>
+  <img src="./validation/screenshot/emprestimos.jpg" width="400"/>
+</p>
+
+<p align="center">
+  <img src="./validation/screenshot/reservas.jpg" width="400"/>
+</p>
+
+
 ---
 
 ## 3. Visão geral da arquitetura
@@ -64,6 +94,8 @@ Toda a comunicação entre frontend e backend ocorre **exclusivamente via API RE
 - **Axios** para requisições HTTP  
 - Tokens **JWT** para persistência de sessão  
 - Endpoints públicos e protegidos por middleware  
+
+
 
 ---
 
