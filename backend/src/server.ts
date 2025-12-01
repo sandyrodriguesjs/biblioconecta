@@ -5,6 +5,7 @@ import userRoutes from "./routes/userRoutes";
 import booksRoutes from "./routes/booksRoutes";
 import booksCirculationRoutes from "./routes/booksCirculationRoutes";
 import emprestimosRoutes from "./routes/emprestimosRoutes";
+import { setupSwagger } from "./swagger/swaggerCOnfig";
 
 export const app = express();
 const prisma = new PrismaClient();
@@ -31,6 +32,8 @@ app.use(
 );
 
 app.use(express.json());
+
+setupSwagger(app);
 
 app.get("/", (req, res) => {
   res.send("API BiblioConecta funcionando 🚀");
