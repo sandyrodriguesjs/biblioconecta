@@ -12,14 +12,14 @@
 
 # 📘 Introdução
 
-Este relatório apresenta a validação do sistema **BiblioConecta**, realizada com profissionais da área de biblioteconomia da Universidade de Fortaleza (Unifor).  
+Este relatório apresenta a validação do sistema **BiblioConecta**, realizada tanto com profissionais da área de biblioteconomia da Universidade de Fortaleza (Unifor) quanto com duas usuárias de bibliotecas comunitária de condomínios.
 O objetivo desta etapa é coletar feedback técnico, identificar oportunidades de melhoria e alinhar o sistema às necessidades reais de bibliotecas comunitárias — público principal do projeto.
 
 <br/>
 
 ---
 
-# 🖼️ Momento de Validação
+# 🖼️ Momento de Validação Técnica
 
 <p align="center">
   <img src="..validation/validação/assets/apresentacao.JPG" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
@@ -142,94 +142,52 @@ As sugestões serão incorporadas às próximas etapas do desenvolvimento, garan
 
 <br/>
 
----
+------------------------------------------------------------------------------------
 
-# 👤 Validação com Usuários
 
-Para complementar a análise realizada com as bibliotecárias da Unifor, foram conduzidas validações com usuários reais do público-alvo potencial do BiblioConecta. O objetivo foi identificar percepções sobre aplicabilidade, usabilidade e aderência da solução em cenários reais.
+
+# 👤 Momento de Validação com Usuários
+
+Para complementar a validação técnica, também foram realizadas entrevistas com duas representantes reais do público-alvo inicial: moradoras de condomínios com iniciativas de bibliotecas comunitárias e usuárias de pequenos acervos compartilhados. O objetivo foi validar a utilidade prática, a usabilidade e o potencial de adoção do BiblioConecta nesses ambientes.
 
 ---
 
 ## 🧍‍♀️ Usuária 1 — **Rayza Alves Marques**
 
-- **Moradora do Condomínio Smille Village**  
+- **Perfil:** Moradora do Condomínio Smille Village  
 - **Endereço:** Rua do Parque, 333 — Fortaleza/CE  
-- **Contexto:** O condomínio possui uma iniciativa de *biblioteca comunitária interna*, onde moradores podem doar livros que ficam armazenados na sala de estudos.  
+- **Ambiente real:** Biblioteca comunitária instalada na sala de estudos, composta por livros doados pelos moradores  
 - **Modalidade da validação:** Reunião via Google Meet  
-- **Foto:** *(opcional)*
 
-### 📌 Principais Observações
+### 📌 Observações específicas da usuária
 
-- Considerou o projeto **extremamente interessante e aplicável** ao condomínio.
-- Disse que o sistema agregaria muito ao espaço compartilhado, facilitando o uso da biblioteca comunitária.
-- Destacou que, com o BiblioConecta:
-  - O **administrador do condomínio** poderia cadastrar todo o acervo.
-  - Os **moradores poderiam consultar a disponibilidade** antes de descer para pegar o livro.
-- Enfatizou que o sistema **traz organização e praticidade**, algo que falta hoje no modelo atual do condomínio.
-- Acredita que poderia incentivar ainda mais o uso do espaço e a circulação dos livros.
+- O sistema **se encaixa perfeitamente** no modelo de biblioteca já existente no condomínio.  
+- Para ela, o maior problema hoje é **não saber quais livros estão disponíveis** antes de descer até a sala.  
+- Com o BiblioConecta, moradores poderiam **consultar o acervo online**, o que traria organização e agilidade ao uso do espaço.  
+- A usuária afirmou que o sistema **seria imediatamente útil** e que inclusive sugeriria à administração do condomínio.
 
 ---
 
 ## 🧍‍♀️ Usuária 2 — **Rafaela Holanda Coelho**
 
-- **Estudante de Medicina**  
-- **Universidade Christus (Unichristus)**  
+- **Perfil:** Estudante de Medicina — Unichristus  
 - **Endereço:** Rua Eduardo Garcia, 888 — Fortaleza/CE  
-- **Participação:** Presente na reunião de validação junto com Rayza  
-- **Foto:** *(opcional)*
+- **Participação:** Presente na validação com Rayza  
 
-### 📌 Principais Observações
+### 📌 Observações específicas da usuária
 
-- Parabenizou a iniciativa e afirmou que a proposta é **útil, atual e necessária**.
-- Reforçou a importância de incluir no sistema:
-  - **Data da reserva**  
-  - **Data prevista para devolução**
-- Pontuou a necessidade de definir **suspensão da conta** em casos de atrasos, garantindo organização na circulação de livros.
-- Pontuou que seria interessante integrar com o sistema de cadastro dos condôminos.
-- Destacou que categorias como “história popular” ou “ciência” podem ser muito amplas ou pouco claras, recomendando que o sistema utilize classificações mais comuns e familiares aos leitores, tais como: Ação, Aventura, Romance, Suspense / Mistério, Fantasia, Ficção Científica, Infantil, Autoajuda, Biografia, etc. Essas categorias, segundo a usuária, tornam a navegação mais simples e facilitam a identificação rápida do tipo de livro buscado.Além disso, ela reforçou que, caso desejado, o administrador do condomínio poderia incluir novas categorias conforme a necessidade do acervo — garantindo flexibilidade e escalabilidade ao sistema. 
-- Sugeriu que o projeto **comece com um público-alvo mais específico**, como:
-  - condomínios residenciais,
-  - pequenos grupos comunitários,
-  - espaços compartilhados de estudo,
-  pois o acervo é menor, mais simples de administrar e o fluxo é controlado.
+- Destacou a importância de **datas claras de reserva e devolução**, pois isso ajuda no fluxo e na organização.  
+- Sugeriu **suspensão do usuário** em caso de atraso, como forma de manter disciplina no uso.  
+- Indicou que seria interessante integrar com o **cadastro de moradores do condomínio**, facilitando o controle interno.  
+- Reforçou que categorias como “ciência” e “história popular” são pouco intuitivas para esse público.  
+  → Sugeriu categorias mais diretas: *Ação, Romance, Suspense, Fantasia, Infantil, Autoajuda, Biografia*, etc.  
+- Ressaltou que o sistema seria mais fácil de implementar em **condomínios**, pois o acervo é menor, o fluxo é reduzido e o público é fechado.  
 
-### 🎯 Justificativa da sugestão:
-- Para bibliotecas comunitárias maiores, o acervo costuma ser extenso e o volume de empréstimos mais desafiador.
-- Em condomínios, o sistema seria **mais simples de implementar**, semelhante à lógica de “mercadinhos dentro do condomínio”.
-- O fluxo menor permitiria medir impacto e evoluir o sistema com mais segurança.
+### 🎯 Justificativa
 
----
-
-# 🧩 Síntese da Validação com Usuários
-
-A validação confirmou que o BiblioConecta:
-
-- é percebido como útil e aplicável em ambientes reais;  
-- tem potencial imediato para condomínios e pequenos acervos;  
-- promove organização e praticidade no empréstimo de livros;  
-- pode ser implementado por administradores, síndicos ou grupos de moradores;  
-- possui funcionalidades desejadas pelos usuários iniciais, como:
-  - consulta remota do acervo,
-  - gestão de prazo de reserva,
-  - datas de devolução,
-  - política clara de atraso.
-
-Além disso, os usuários reforçaram que o projeto **está no caminho certo** e possui capacidade de expansão futura para bibliotecas de maior porte.
-
----
-
-# 🏁 Conclusão da Validação com Usuários
-
-A validação reforça que o BiblioConecta tem espaço real de aplicação imediata em:
-
-- condomínios residenciais,  
-- salas de estudo com acervos compartilhados,  
-- pequenas iniciativas comunitárias,  
-- projetos locais de fomento à leitura.
-
-As contribuições serão incorporadas nas próximas etapas de desenvolvimento, alinhando o sistema às necessidades identificadas pelos primeiros usuários reais.
-
-
+- Em condomínios: acervo pequeno + fluxo menor + gestão simples → **adoção imediata**.  
+- Em bibliotecas comunitárias maiores: acervo extenso + fluxo intenso → **maior complexidade**.  
+- Por isso, recomendou iniciar a implementação em condomínios como “prova de conceito”.
 
 
 
