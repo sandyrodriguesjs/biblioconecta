@@ -1,13 +1,13 @@
 # 📌 1. Requisitos Funcionais Implementados
 
-## ** Autenticação de Usuário**
+## **Autenticação de Usuário**
 - Login com validação de credenciais.
 - Autenticação via **JWT**.
 - Rotas protegidas por middleware.
 
 ---
 
-## ** Cadastro de Usuário**
+## **Cadastro de Usuário**
 - Registro de novos usuários.
 - Campos básicos: **nome**, **email**, **senha**.
 - Validação de email único.
@@ -15,7 +15,7 @@
 
 ---
 
-## ** Perfil do Usuário**
+## **Perfil do Usuário**
 Página de perfil contendo:
 - Dados da conta.
 - Histórico mensal.
@@ -25,14 +25,14 @@ Página de perfil contendo:
 
 ---
 
-## ** Consulta ao Catálogo de Livros**
+## **Consulta ao Catálogo de Livros**
 - Exibição de todos os livros cadastrados.
 - Filtro por **categoria**.
 - Busca por **título** e **autor**.
 
 ---
 
-## ** Visualização de Detalhes do Livro**
+## **Visualização de Detalhes do Livro**
 O modal apresenta:
 - Título
 - Autor
@@ -43,7 +43,7 @@ Integração direta com backend para status dos exemplares.
 
 ---
 
-## ** Cadastro de Livros (Admin)**
+## **Cadastro de Livros (Admin)**
 CRUD completo:
 - Criar
 - Editar
@@ -53,7 +53,7 @@ Suporte a upload de imagem de capa via **multer**.
 
 ---
 
-## ** Cadastro e Gestão de Exemplares**
+## **Cadastro e Gestão de Exemplares**
 - Um livro possui múltiplos exemplares.
 - Cada exemplar possui identificação própria.
 - Status dos exemplares:
@@ -63,21 +63,21 @@ Suporte a upload de imagem de capa via **multer**.
 
 ---
 
-## ** Empréstimo de Livros**
+## **Empréstimo de Livros**
 - Registrar empréstimo.
 - Alterar status do exemplar para **Emprestado**.
 - Gravar empréstimo no histórico do usuário.
 
 ---
 
-## ** Devolução de Livros**
+## **Devolução de Livros**
 - Registrar devolução.
 - Alterar status do exemplar para **Disponível** ou **Reservado** (se houver fila).
 - Registro atualizado no histórico.
 
 ---
 
-## ** Renovação de Empréstimo**
+## **Renovação de Empréstimo**
 - Usuário pode renovar empréstimo.
 - Regras implementadas:
   - Renovação limitada a **1 vez**.
@@ -87,7 +87,7 @@ Suporte a upload de imagem de capa via **multer**.
 
 ---
 
-## ** Sistema de Reservas**
+## **Sistema de Reservas**
 - Usuário pode reservar livros quando todos os exemplares estão emprestados.
 - Backend cria objeto **reserva**.
 - Implementação de **fila FIFO**.
@@ -96,7 +96,7 @@ Suporte a upload de imagem de capa via **multer**.
 
 ---
 
-## ** Histórico Mensal**
+## **Histórico Mensal**
 Implementado no backend em `GetReadingHistoryCurrentMonth`, incluindo:
 - Livros emprestados.
 - Livros reservados.
@@ -104,7 +104,7 @@ Implementado no backend em `GetReadingHistoryCurrentMonth`, incluindo:
 
 ---
 
-## ** CRUD Administrativo**
+## **CRUD Administrativo**
 Administrador pode:
 - Cadastrar livros.
 - Cadastrar usuários.
@@ -116,12 +116,12 @@ Administrador pode:
 
 # 📌 2. Regras de Negócio Implementadas
 
-## **RN01 — E-mail Único**
+## **E-mail Único**
 - Validação no backend impedindo duplicidade.
 
 ---
 
-## **RN02 — Status do Usuário**
+## **Status do Usuário**
 Status:
 - **Ativo**
 - **Bloqueado**  
@@ -132,7 +132,7 @@ Restrições do bloqueado:
 
 ---
 
-## **RN03 — Regras de Empréstimo**
+## **Regras de Empréstimo**
 - Usuário deve estar **Ativo**.
 - Exemplar deve estar **Disponível**.
 - Prazo padrão: **14 dias corridos**.
@@ -140,7 +140,7 @@ Restrições do bloqueado:
 
 ---
 
-## **RN04 — Regras de Reserva**
+## **Regras de Reserva**
 - Só é possível reservar se todos os exemplares estiverem emprestados.
 - Limite: **2 reservas** por usuário.
 - Fila de reserva do tipo **FIFO**.
@@ -149,7 +149,7 @@ Restrições do bloqueado:
 
 ---
 
-## **RN05 — Regras de Devolução**
+## **Regras de Devolução**
 - Atualiza status do exemplar.
 - Verifica reservas ao devolver.
 - Se houver atraso:
