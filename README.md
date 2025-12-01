@@ -65,8 +65,6 @@ Toda a comunicação entre frontend e backend ocorre **exclusivamente via API RE
 - Tokens **JWT** para persistência de sessão  
 - Endpoints públicos e protegidos por middleware  
 
-Essa separação clara permite fácil manutenção, escalabilidade e possibilidade de evolução futura (ex: microserviços, apps mobile).
-
 ---
 
 ## 4. Tecnologias Utilizadas
