@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, BookCheck, LibraryBig, UserRoundCog, BookAlert } from "lucide-react";
+import { Home, BookCheck, LibraryBig, UserRoundCog, BookAlert, LogOut } from "lucide-react";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -87,7 +87,7 @@ export default function SideBar() {
         onClick={logout}
         className="fixed bottom-6 left-6 z-50 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2"
       >
-        Sair
+        <LogOut size={20}/> Sair
       </button>
     </aside>
   );
