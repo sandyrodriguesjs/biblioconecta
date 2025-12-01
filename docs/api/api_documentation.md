@@ -1,12 +1,18 @@
-# 📘 Documentação da API — BiblioConecta
+## 📘 Documentação da API — BiblioConecta
 
-A API do BiblioConecta segue um padrão RESTful e disponibiliza funcionalidades para gerenciamento de usuários, livros, exemplares, reservas e empréstimos.
+A API do **BiblioConecta** segue um padrão **RESTful** e disponibiliza funcionalidades para gerenciamento de:
 
----
+  * **Usuários**
+  * **Livros**
+  * **Exemplares**
+  * **Reservas**
+  * **Empréstimos**
+
+-----
 
 ## 🚀 Executando o Backend
 
-Para acessar o Swagger e testar os endpoints, é necessário iniciar o backend localmente.
+Para acessar o **Swagger** e testar os endpoints, é necessário iniciar o backend localmente.
 
 ### 🔧 Passo a passo para executar o servidor:
 
@@ -14,11 +20,24 @@ Para acessar o Swagger e testar os endpoints, é necessário iniciar o backend l
 cd backend
 npm install
 npm run dev
+```
 
----
+-----
 
-<p align="center"> <img src="./swaggerInterface/rotausuarios.png" width="700"/> </p>
+## 🎨 Interface do Swagger
 
-<p align="center"> <img src="./swaggerInterface/rotalivros.png" width="700"/> </p>
+A interface do Swagger permite visualizar e interagir com os diversos *endpoints* da API.
 
-<p align="center"> <img src="./swaggerInterface/rotaemprestimos.png" width="700"/> </p>
+<p align="center"\>
+<img src="./swaggerInterface/rotausuarios.png" width="700" alt="Interface Swagger: Rota de Usuários"/\>
+</p\>
+
+<p align="center"\>
+<img src="./swaggerInterface/rotalivros.png" width="700" alt="Interface Swagger: Rota de Livros"/\>
+</p\>
+
+<p align="center"\>
+<img src="./swaggerInterface/rotaemprestimos.png" width="700" alt="Interface Swagger: Rota de Empréstimos"/\>
+</p\>
+
+-----
