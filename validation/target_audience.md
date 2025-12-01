@@ -1,4 +1,5 @@
-### Definição do Público-Alvo
+
+### 🎯 Definição do Público-Alvo
 
 Para estabelecer com clareza o público-alvo inicial do BiblioConecta, foram identificados grupos reais e acessíveis que se beneficiariam diretamente da solução. Entramos em contato com algumas bibliotecas comunitárias de Fortaleza para realizar a validação, porém não houve retorno para agendamento de encontros online ou presenciais. 
 
@@ -15,5 +16,6 @@ Alguns exemplos específicos do público-alvo identificado são:
   → O BiblioConecta poderia ser utilizado para catalogar o acervo e permitir que os moradores consultem previamente os livros disponíveis antes de buscar presencialmente.
 
 - **Rafaela Holanda Coelho**, estudante de Medicina na Unichristus, residente na Rua Eduardo Garcia, 888 — usuária que demonstrou interesse no sistema.
+
 
 
