@@ -31,23 +31,35 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 | Perfil do usuário     | ✔ Implementado             |
 | Hitórico Mensal       | ✔ Implementado             |
 
-![Login](./docs/validation/screenshot/login.jpg)
+## 💻 Telas do Sistema (Web)
 
-![Home](./docs/validation/screenshot/home.jpg)
+### 👤 Telas do Usuário
 
-![Card de Livro](./docs/validation/screenshot/cardlivro.jpg)
+<p align="center">
+  <img src="./docs/validation/screenshot/login.jpg" width="300"/>
+  <img src="./docs/validation/screenshot/home.jpg" width="300"/>
+  <img src="./docs/validation/screenshot/card-livro.jpg" width="300"/>
+</p>
 
-![Detalhes do Livro](./docs/validation/screenshot/detalheslivro.jpg)
+<p align="center">
+  <img src="./docs/validation/screenshot/detalhes-livro.jpg" width="300"/>
+  <img src="./docs/validation/screenshot/perfil-usuario.jpg" width="300"/>
+</p>
 
-![Perfil do Usuário](./docs/validation/screenshot/perfilusuario.jpg)
+---
 
-![Empréstimos](./docs/validation/screenshot/emprestimos.jpg)
+### 🛠️ Telas do Administrador
 
-![Reservas](./docs/validation/screenshot/reservas.jpg)
+<p align="center">
+  <img src="./docs/validation/screenshot/acervo.jpg" width="300"/>
+  <img src="./docs/validation/screenshot/gerencimaneto.jpg" width="300"/>
+  <img src="./docs/validation/screenshot/emprestimos.jpg" width="300"/>
+</p>
 
-![Gestão de Acervo](./docs/validation/screenshot/acervo.jpg)
+<p align="center">
+  <img src="./docs/validation/screenshot/reservas.jpg" width="300"/>
+</p>
 
-![Gerenciamento de Usuários](./docs/validation/screenshot/gerenciamento.jpg)
 
 ---
 
