@@ -34,3 +34,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## 📄 Validação do Projeto
+
+A validação do BiblioConecta foi realizada com dois públicos distintos:
+
+👩‍🏫 Bibliotecárias — Universidade de Fortaleza (Unifor)
+As profissionais validaram o fluxo técnico do sistema e contribuíram com sugestões importantes, como:
+- exibição de prazos de reserva e devolução;  
+- criação de fila de espera;  
+- políticas de atraso (multa/bloqueio);  
+- ajuste nos botões de reserva/empréstimo.
+
+🧍‍♀️ Usuárias Reais — Bibliotecas de Condomínio
+Moradoras e estudantes confirmaram que o sistema é altamente aplicável em pequenos acervos residenciais. Sugestões importantes incluíram:
+- datas claras de reserva e devolução;  
+- categorias mais intuitivas;  
+- possível integração com cadastro de moradores;  
+- foco inicial em condomínios, onde o acervo é menor e fácil de gerenciar.
+
+📂 **Documentação completa disponível em:**  
+`/validation/`
+
