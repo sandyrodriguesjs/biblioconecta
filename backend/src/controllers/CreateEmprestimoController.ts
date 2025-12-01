@@ -7,6 +7,9 @@ export class CreateEmprestimoController {
 
       const userRole = (req as any).user?.role;
 
+      console.log("Request body:", req.body);
+      console.log("User role:", req.user?.role);
+
       if (userRole !== "ADMIN") {
         res.status(403).json({
           error: "Acesso negado, somente admins podem aprovar um emprestimo!"

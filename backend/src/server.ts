@@ -6,7 +6,7 @@ import booksRoutes from "./routes/booksRoutes";
 import booksCirculationRoutes from "./routes/booksCirculationRoutes";
 import emprestimosRoutes from "./routes/emprestimosRoutes";
 
-const app = express();
+export const app = express();
 const prisma = new PrismaClient();
 
 const allowedOrigins = [
