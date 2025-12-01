@@ -33,40 +33,39 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
     de livros lidos
 ---
 
-## 3. Arquitetura do Sistema
+## 3. Visão geral da arquitetura
 
-O sistema segue uma arquitetura **Full Stack**, composta por:
+A arquitetura do **BiblioConecta** segue uma abordagem simples, organizada e escalável, estruturada da seguinte forma:
 
-### **Frontend — Next.js**
-- Next.js 14 + React  
-- Tailwind CSS  
-- Axios  
-- Framer Motion  
-- Componentes reutilizáveis (BookCard, Modal, Sidebar, Navbar etc.)  
-- Filtro de categorias  
-- Página de perfil do usuário  
-- Páginas de gerenciamento de Livros e Usuários 
+### **Backend**
+Aplicação monolítica desenvolvida em **Node.js com TypeScript**, responsável por concentrar:
 
-### **Backend — Node.js / Express**
-- Arquitetura monolítica
-- API REST estruturada  
-- Controllers, Services, Repositories e Middlewares de Autenticação
-- Autenticação JWT  
-- Criptografia de senhas com Bcrypt  
-- CRUD de Livros e Exemplares  
-- Lógica de Empréstimos e Reservas  
-- Histórico mensal de livros lidos
-- Definição de níveis de acesso (USER e ADMIN)
+- Regras de negócio  
+- Validações  
+- Autenticação  
+- Controle de empréstimos e reservas  
+- Acesso ao banco de dados via **Prisma ORM**
 
-### **Banco de Dados — PostgreSQL**
-- Modelagem via **Prisma ORM**  
-- Relacionamentos entre:  
-  - Usuários  
-  - Livros  
-  - Exemplares  
-  - Empréstimos  
-  - Reservas  
-  - Roles (USER e ADMIN)
+Toda a lógica crítica do sistema está centralizada no backend, garantindo segurança e consistência.
+
+### **Frontend**
+SPA (Single Page Application) construída com **React + Next.js + TypeScript**, responsável por:
+
+- Interface do usuário  
+- Navegação entre páginas  
+- Painel administrativo  
+- Catálogo de livros  
+- Filtros e buscas  
+- Experiência visual usando **Tailwind CSS** e animações com **Framer Motion**
+
+### **Comunicação**
+Toda a comunicação entre frontend e backend ocorre **exclusivamente via API REST**, usando:
+
+- **Axios** para requisições HTTP  
+- Tokens **JWT** para persistência de sessão  
+- Endpoints públicos e protegidos por middleware  
+
+Essa separação clara permite fácil manutenção, escalabilidade e possibilidade de evolução futura (ex: microserviços, apps mobile).
 
 ---
 
