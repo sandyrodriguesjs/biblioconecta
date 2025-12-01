@@ -23,6 +23,7 @@ npm run dev
 ```
 
 -----
+Após a execução, acesse a interface do Swagger pela URL: http://localhost:3333/api-docs/
 
 ## 🎨 Interface do Swagger
 
