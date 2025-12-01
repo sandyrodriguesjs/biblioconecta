@@ -30,7 +30,25 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 | Filtro por categoria  | ✔ Implementado no Frontend |
 | Perfil do usuário     | ✔ Implementado             |
 | Hitórico Mensal       | ✔ Implementado             |
-    de livros lidos
+
+![Login](./docs/validation/screenshot/login.jpg)
+
+![Home](./docs/validation/screenshot/home.jpg)
+
+![Card de Livro](./docs/validation/screenshot/cardlivro.jpg)
+
+![Detalhes do Livro](./docs/validation/screenshot/detalheslivro.jpg)
+
+![Perfil do Usuário](./docs/validation/screenshot/perfilusuario.jpg)
+
+![Empréstimos](./docs/validation/screenshot/emprestimos.jpg)
+
+![Reservas](./docs/validation/screenshot/reservas.jpg)
+
+![Gestão de Acervo](./docs/validation/screenshot/acervo.jpg)
+
+![Gerenciamento de Usuários](./docs/validation/screenshot/gerenciamento.jpg)
+
 ---
 
 ## 3. Visão geral da arquitetura
@@ -64,6 +82,8 @@ Toda a comunicação entre frontend e backend ocorre **exclusivamente via API RE
 - **Axios** para requisições HTTP  
 - Tokens **JWT** para persistência de sessão  
 - Endpoints públicos e protegidos por middleware  
+
+
 
 ---
 
