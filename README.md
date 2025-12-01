@@ -52,7 +52,7 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 
 <p align="center">
   <img src="./validation/screenshot/acervo.jpg" width="400"/>
-  <img src="./validation/screenshot/gerenciamaneto.jpg" width="400"/>
+  <img src="./validation/screenshot/gerenciamento.jpg" width="400"/>
   <img src="./validation/screenshot/emprestimos.jpg" width="400"/>
 </p>
 
