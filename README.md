@@ -36,14 +36,14 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 ### 👤 Telas do Usuário
 
 <p align="center">
-  <img src="./docs/validation/screenshot/login.jpg" width="300"/>
-  <img src="./docs/validation/screenshot/home.jpg" width="300"/>
-  <img src="./docs/validation/screenshot/card-livro.jpg" width="300"/>
+  <img src="./validation/screenshot/login.jpg" width="300"/>
+  <img src="./validation/screenshot/home.jpg" width="300"/>
+  <img src="./validation/screenshot/card-livro.jpg" width="300"/>
 </p>
 
 <p align="center">
-  <img src="./docs/validation/screenshot/detalhes-livro.jpg" width="300"/>
-  <img src="./docs/validation/screenshot/perfil-usuario.jpg" width="300"/>
+  <img src="./validation/screenshot/detalhes-livro.jpg" width="300"/>
+  <img src="./validation/screenshot/perfil-usuario.jpg" width="300"/>
 </p>
 
 ---
@@ -51,13 +51,13 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 ### 🛠️ Telas do Administrador
 
 <p align="center">
-  <img src="./docs/validation/screenshot/acervo.jpg" width="300"/>
-  <img src="./docs/validation/screenshot/gerencimaneto.jpg" width="300"/>
-  <img src="./docs/validation/screenshot/emprestimos.jpg" width="300"/>
+  <img src="./validation/screenshot/acervo.jpg" width="300"/>
+  <img src="./validation/screenshot/gerencimaneto.jpg" width="300"/>
+  <img src="./validation/screenshot/emprestimos.jpg" width="300"/>
 </p>
 
 <p align="center">
-  <img src="./docs/validation/screenshot/reservas.jpg" width="300"/>
+  <img src="./validation/screenshot/reservas.jpg" width="300"/>
 </p>
 
 
