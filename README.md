@@ -42,8 +42,8 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 </p>
 
 <p align="center">
-  <img src="./validation/screenshot/detalhes-livro.jpg" width="300"/>
-  <img src="./validation/screenshot/perfil-usuario.jpg" width="300"/>
+  <img src="./validation/screenshot/detalheslivro.jpg" width="300"/>
+  <img src="./validation/screenshot/perfilusuario.jpg" width="300"/>
 </p>
 
 ---
@@ -52,7 +52,7 @@ A tabela abaixo apresenta apenas as funcionalidades realmente existentes no proj
 
 <p align="center">
   <img src="./validation/screenshot/acervo.jpg" width="300"/>
-  <img src="./validation/screenshot/gerencimaneto.jpg" width="300"/>
+  <img src="./validation/screenshot/gerenciamaneto.jpg" width="300"/>
   <img src="./validation/screenshot/emprestimos.jpg" width="300"/>
 </p>
 
