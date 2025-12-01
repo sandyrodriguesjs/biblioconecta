@@ -1,8 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BiblioConecta
 
-## Getting Started
+Sistema web completo para gerenciamento de bibliotecas, permitindo o controle de livros, exemplares, usuários, empréstimos e reservas, com uma interface moderna e painel administrativo.
 
-First, run the development server:
+---
+
+## 1. Objetivo do Sistema
+
+O **BiblioConecta** foi desenvolvido com o propósito de:
+
+- Centralizar e organizar o acervo de livros;
+- Automatizar processos de **empréstimos** e **reservas**;
+- Gerenciar usuários com diferentes permissões;
+- Disponibilizar um **painel administrativo** com visão geral do sistema;
+- Facilitar o acesso dos leitores ao catálogo e histórico pessoal.
+
+---
+
+## 2. Funcionalidades Existentes
+
+A tabela abaixo apresenta apenas as funcionalidades realmente existentes no projeto:
+
+| Funcionalidade        | Status                     |
+|-----------------------|----------------------------|
+| Login / Autenticação (JWT) | ✔ Completo           |
+| CRUD de Livros        | ✔ Completo                 |
+| CRUD de Exemplares    | ✔ Completo                 |
+| Empréstimos           | ✔ Completo                 |
+| Reservas              | ✔ Completo                 |
+| Filtro por categoria  | ✔ Implementado no Frontend |
+| Perfil do usuário     | ✔ Implementado             |
+| Hitórico Mensal       | ✔ Implementado             |
+    de livros lidos
+---
+
+## 3. Visão geral da arquitetura
+
+A arquitetura do **BiblioConecta** segue uma abordagem simples, organizada e escalável, estruturada da seguinte forma:
+
+### **Backend**
+Aplicação monolítica desenvolvida em **Node.js com TypeScript**, responsável por concentrar:
+
+- Regras de negócio  
+- Validações  
+- Autenticação  
+- Controle de empréstimos e reservas  
+- Acesso ao banco de dados via **Prisma ORM**
+
+Toda a lógica crítica do sistema está centralizada no backend, garantindo segurança e consistência.
+
+### **Frontend**
+SPA (Single Page Application) construída com **React + Next.js + TypeScript**, responsável por:
+
+- Interface do usuário  
+- Navegação entre páginas  
+- Painel administrativo  
+- Catálogo de livros  
+- Filtros e buscas  
+- Experiência visual usando **Tailwind CSS** e animações com **Framer Motion**
+
+### **Comunicação**
+Toda a comunicação entre frontend e backend ocorre **exclusivamente via API REST**, usando:
+
+- **Axios** para requisições HTTP  
+- Tokens **JWT** para persistência de sessão  
+- Endpoints públicos e protegidos por middleware  
+
+---
+
+## 4. Tecnologias Utilizadas
+
+### **Frontend**
+- Next.js 14  
+- Typescript
+- React  
+- Tailwind CSS  
+- Axios  
+- Lucide Icons  
+- Framer Motion  
+
+### **Backend**
+- Node.js  
+- Typescript
+- Express  
+- Prisma ORM  
+- PostgreSQL  
+- Bcrypt  
+- JWT  
+- Vitest
+- Supertest
+
+### **Ferramentas**
+- Git / GitHub  
+- VS Code 
+- Vercel (Front)
+- Render (Back)
+- Neon DB (Banco)
+- Prisma Studio  
+- npm  
+
+---
+
+## 5. Instalação e Execução
+
+### **Backend**
+
+```bash
+cd backend
+npm install
+
+---
+
+### **Frontend**
+
+```bash
+cd frontend\web\biblioconecta
+npm install
+
+---
+
+## 6. Testes
 
 ```bash
 npm run dev
