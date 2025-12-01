@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./validation/evidence/unifor.jpg" width="200"/>
+  <img src="./evidence/unifor.jpg" width="200"/>
 
 </p>
 
@@ -22,7 +22,7 @@ O objetivo desta etapa é coletar feedback técnico, identificar oportunidades d
 # 🖼️ Momento de Validação Técnica
 
 <p align="center">
-  <img src=".validation/evidence/apresentacao.JPG" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
+  <img src="./evidence/apresentacao.JPG" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
 </p>
 
 <br/>
