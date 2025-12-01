@@ -1,6 +1,6 @@
 ## 📘 Documentação da API — BiblioConecta
 
-A API do **BiblioConecta** segue um padrão **RESTful** e disponibiliza funcionalidades para gerenciamento de:
+A API do **BiblioConecta** segue um padrão **RESTful** e disponibiliza funcionalidades para gerenciamento e controle de:
 
   * **Usuários**
   * **Livros**
