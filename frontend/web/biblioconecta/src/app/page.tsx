@@ -106,10 +106,6 @@ export default function Login() {
           </button>
         </Link>
       </form>
-
-      <p className="text-sm text-gray-500 mt-4 hover:underline cursor-pointer">
-        Esqueceu a senha?
-      </p>
     </div>
   );
 }
