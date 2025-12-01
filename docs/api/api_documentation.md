@@ -15,6 +15,7 @@ cd backend
 npm install
 npm run dev
 
+---
 
 <p align="center"> <img src="./swaggerInterface/rotausuarios.png" width="700"/> </p>
 
