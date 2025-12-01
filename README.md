@@ -124,51 +124,32 @@ npm install
 ## 6. Testes
 
 ```bash
-cd backend
-npm test
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 7. Acesso ao Sistema
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Ambiente local
-- Frontend: http://localhost:3000
-- Backend: http://localhost:3333
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-### Ambiente hospedado
-- Frontend: https://biblioconecta.vercel.app
-- Backend: https://biblioconecta-back.onrender.com
+To learn more about Next.js, take a look at the following resources:
 
----
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 8. Público-Alvo e Validação
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Público-Alvo
-- Bibliotecas escolares
-- Universidades
-- Pequenos centros de leitura
-- Alunos e leitores em geral
+## Deploy on Vercel
 
-### Validação
-O processo de validação foi realizado por meio de:
-- Testes internos da equipe
-- Ajustes na experiência do usuário
-- Feedbacks que resultaram em melhorias, como:
-  - Inclusão de filtro por categorias
-  - Ajuste do modal de detalhes
-  - Organização do dashboard administrativo
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-## 9. Equipe de Desenvolvimento
-
-Contribuidores 
-
----
-
-## Conclusão
-
-O BiblioConecta é um sistema sólido, funcional e moderno, ideal para gerenciar bibliotecas com eficiência.
-Sua arquitetura clara e o uso de tecnologias atuais tornam o projeto escalável e de fácil manutenção.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
