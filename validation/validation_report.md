@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./validation/evidence/unifor.jpg" width="200"/>
+  <img src="./evidence/unifor.png" width="200"/>
 
 </p>
 
@@ -22,7 +22,7 @@ O objetivo desta etapa é coletar feedback técnico, identificar oportunidades d
 # 🖼️ Momento de Validação Técnica
 
 <p align="center">
-  <img src=".validation/evidence/apresentacao.JPG" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
+  <img src="./evidence/apresentacao.JPG" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
 </p>
 
 <br/>
@@ -151,6 +151,11 @@ As sugestões serão incorporadas às próximas etapas do desenvolvimento, garan
 Para complementar a validação técnica, também foram realizadas entrevistas com duas representantes reais do público-alvo inicial: moradoras de condomínios com iniciativas de bibliotecas comunitárias e usuárias de pequenos acervos compartilhados. O objetivo foi validar a utilidade prática, a usabilidade e o potencial de adoção do BiblioConecta nesses ambientes.
 
 ---
+
+
+<p align="center">
+  <img src="./evidence/apresentacao2.jpeg" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
+</p>
 
 ## 🧍‍♀️ Usuária 1 — **Rayza Alves Marques**
 

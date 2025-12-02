@@ -1,184 +1,179 @@
-# BiblioConecta
+# 📚 BiblioConecta
 
-Sistema web completo para gerenciamento de bibliotecas, permitindo o controle de livros, exemplares, usuários, empréstimos e reservas, com uma interface moderna e painel administrativo.
-
----
-
-## 1. Objetivo do Sistema
-
-O **BiblioConecta** foi desenvolvido com o propósito de:
-
-- Centralizar e organizar o acervo de livros;
-- Automatizar processos de **empréstimos** e **reservas**;
-- Gerenciar usuários com diferentes permissões;
-- Disponibilizar um **painel administrativo** com visão geral do sistema;
-- Facilitar o acesso dos leitores ao catálogo e histórico pessoal.
+Sistema web completo para **gerenciamento de bibliotecas**, permitindo o controle de livros, exemplares, usuários, empréstimos e reservas, com uma interface moderna e painel administrativo.
 
 ---
 
-## 2. Funcionalidades Existentes
+## 🎯 1. Objetivo do Projeto
 
-A tabela abaixo apresenta apenas as funcionalidades realmente existentes no projeto:
+O **BiblioConecta** foi desenvolvido com o propósito de modernizar e automatizar a gestão de bibliotecas, focando em:
 
-| Funcionalidade        | Status                     |
-|-----------------------|----------------------------|
-| Login / Autenticação (JWT) | ✔ Completo           |
-| CRUD de Livros        | ✔ Completo                 |
-| CRUD de Exemplares    | ✔ Completo                 |
-| Empréstimos           | ✔ Completo                 |
-| Reservas              | ✔ Completo                 |
-| Filtro por categoria  | ✔ Implementado no Frontend |
-| Perfil do usuário     | ✔ Implementado             |
-| Hitórico Mensal       | ✔ Implementado             |
+* **Centralizar e organizar** o acervo de livros e exemplares.
+* Automatizar os processos de **empréstimos** e **reservas**.
+* Gerenciar usuários com diferentes perfis de **permissão**.
+* Disponibilizar um **painel administrativo** com visão geral e controle do sistema.
+* Facilitar o acesso dos leitores ao catálogo e ao seu histórico pessoal de atividades.
 
-## 💻 Telas do Sistema (Web)
+---
 
-### 👤 Telas do Usuário
+## ✨ 2. Funcionalidades Implementadas
+
+A tabela abaixo lista as funcionalidades principais do sistema:
+
+| Funcionalidade | Status |
+| :--- | :--- |
+| **Login / Autenticação (JWT)** | ✔ Completo |
+| **CRUD de Livros** | ✔ Completo |
+| **CRUD de Exemplares** | ✔ Completo |
+| **Empréstimos** | ✔ Completo |
+| **Reservas** | ✔ Completo |
+| Filtro por categoria (Catálogo) | ✔ Implementado no Frontend |
+| Perfil do usuário | ✔ Implementado |
+| Histórico Mensal | ✔ Implementado |
+
+---
+
+## 💻 3. Telas do Sistema (Screenshots)
+
+### 👤 Telas do Usuário / Leitor
 
 <p align="center">
-  <img src="./validation/screenshot/login.jpg" width="400"/>
-  <img src="./validation/screenshot/home.jpg" width="400"/>
-  <img src="./validation/screenshot/cardlivro.jpg" width="400"/>
+  <img src="./validation/screenshot/login.jpg" width="400" alt="Tela de Login"/>
+  <img src="./validation/screenshot/home.jpg" width="400" alt="Tela Inicial/Home do Usuário"/>
+  <img src="./validation/screenshot/cardlivro.jpg" width="400" alt="Card de Livro no Catálogo"/>
 </p>
 
 <p align="center">
-  <img src="./validation/screenshot/detalheslivro.jpg" width="400"/>
-  <img src="./validation/screenshot/perfilusuario.jpg" width="400"/>
+  <img src="./validation/screenshot/detalheslivro.jpg" width="400" alt="Tela de Detalhes do Livro"/>
+  <img src="./validation/screenshot/perfilusuario.jpg" width="400" alt="Tela de Perfil do Usuário"/>
+</p>
+
+### 🛠️ Telas do Administrador / Painel Gerencial
+
+<p align="center">
+  <img src="./validation/screenshot/acervo.jpg" width="400" alt="Painel Administrativo: Gerenciamento de Acervo"/>
+  <img src="./validation/screenshot/gerenciamento.jpg" width="400" alt="Painel Administrativo: Visão Geral"/>
+  <img src="./validation/screenshot/emprestimos.jpg" width="400" alt="Painel Administrativo: Gerenciamento de Empréstimos"/>
+</p>
+
+<p align="center">
+  <img src="./validation/screenshot/reservas.jpg" width="400" alt="Painel Administrativo: Gerenciamento de Reservas"/>
 </p>
 
 ---
 
-### 🛠️ Telas do Administrador
+## 🏗️ 4. Visão Geral da Arquitetura
 
-<p align="center">
-  <img src="./validation/screenshot/acervo.jpg" width="400"/>
-  <img src="./validation/screenshot/gerenciamento.jpg" width="400"/>
-  <img src="./validation/screenshot/emprestimos.jpg" width="400"/>
-</p>
+A arquitetura do **BiblioConecta** é modular e segue o padrão **Cliente-Servidor (RESTful)**, separando o frontend (visual) e o backend (lógica de negócio).
 
-<p align="center">
-  <img src="./validation/screenshot/reservas.jpg" width="400"/>
-</p>
+### **Backend (API)**
+Aplicação monolítica desenvolvida em **Node.js** com **TypeScript** e **Express**.
 
+* Concentra toda a **regra de negócio**, validações e controle de estado (empréstimos/reservas).
+* Utiliza **Prisma ORM** para acesso ao banco de dados.
+* Gerencia a **Autenticação** via tokens **JWT**.
 
----
+### **Frontend (Cliente Web)**
+SPA (Single Page Application) construída com **React** usando o framework **Next.js** (App Router) e **TypeScript**.
 
-## 3. Visão geral da arquitetura
-
-A arquitetura do **BiblioConecta** segue uma abordagem simples, organizada e escalável, estruturada da seguinte forma:
-
-### **Backend**
-Aplicação monolítica desenvolvida em **Node.js com TypeScript**, responsável por concentrar:
-
-- Regras de negócio  
-- Validações  
-- Autenticação  
-- Controle de empréstimos e reservas  
-- Acesso ao banco de dados via **Prisma ORM**
-
-Toda a lógica crítica do sistema está centralizada no backend, garantindo segurança e consistência.
-
-### **Frontend**
-SPA (Single Page Application) construída com **React + Next.js + TypeScript**, responsável por:
-
-- Interface do usuário  
-- Navegação entre páginas  
-- Painel administrativo  
-- Catálogo de livros  
-- Filtros e buscas  
-- Experiência visual usando **Tailwind CSS** e animações com **Framer Motion**
+* Responsável pela **interface** do usuário e painel administrativo.
+* Estilização moderna e responsiva com **Tailwind CSS**.
+* Animações fluidas utilizando **Framer Motion**.
 
 ### **Comunicação**
-Toda a comunicação entre frontend e backend ocorre **exclusivamente via API REST**, usando:
-
-- **Axios** para requisições HTTP  
-- Tokens **JWT** para persistência de sessão  
-- Endpoints públicos e protegidos por middleware  
-
-
+A comunicação é feita **exclusivamente via API REST** utilizando **Axios** e rotas protegidas por *middleware* de autenticação JWT.
 
 ---
 
-## 4. Tecnologias Utilizadas
+## 🛠️ 5. Tecnologias Utilizadas
 
-### **Frontend**
-- Next.js 14  
-- Typescript
-- React  
-- Tailwind CSS  
-- Axios  
-- Lucide Icons  
-- Framer Motion  
-
-### **Backend**
-- Node.js  
-- Typescript
-- Express  
-- Prisma ORM  
-- PostgreSQL  
-- Bcrypt  
-- JWT  
-- Vitest
-- Supertest
-
-### **Ferramentas**
-- Git / GitHub  
-- VS Code 
-- Vercel (Front)
-- Render (Back)
-- Neon DB (Banco)
-- Prisma Studio  
-- npm  
+| Categoria | Tecnologia |
+| :--- | :--- |
+| **Backend** | Node.js, Express, TypeScript |
+| **Banco de Dados** | PostgreSQL (Neon DB) |
+| **ORM** | Prisma ORM |
+| **Autenticação** | JWT, Bcrypt |
+| **Testes (Back)** | Vitest, Supertest |
+| **Frontend** | Next.js 14, React, TypeScript |
+| **Estilização** | Tailwind CSS, Lucide Icons |
+| **Animações** | Framer Motion |
+| **Infraestrutura** | Vercel (Front), Render (Back) |
 
 ---
 
-## 5. Instalação e Execução
+## ⚙️ 6. Instruções de Instalação e Execução
 
-### **Backend**
+Para rodar o projeto localmente, siga os passos abaixo. É necessário ter o **Node.js** e **npm** instalados.
 
-```bash
-cd backend
-npm install
+### 1. Configuração do Backend
+
+1.  Navegue até o diretório do backend e instale as dependências:
+    ```bash
+    cd backend
+    npm install
+    ```
+2.  Crie um arquivo `.env` baseado no `.env.example` e configure a variável `DATABASE_URL` e `JWT_SECRET` (apontando para uma instância do PostgreSQL).
+3.  Execute as migrations do banco de dados (o Prisma fará isso para você):
+    ```bash
+    npx prisma migrate dev
+    ```
+4.  Inicie o servidor em modo de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+    O servidor estará disponível em `http://localhost:3333`.
+
+### 2. Configuração do Frontend
+
+1.  Navegue até o diretório do frontend:
+    ```bash
+    cd frontend/web/biblioconecta
+    npm install
+    ```
+2.  Inicie o cliente web:
+    ```bash
+    npm run dev
+    ```
+    O sistema estará acessível em **[http://localhost:3000](http://localhost:3000)**.
 
 ---
 
-### **Frontend**
+## 🔑 7. Credenciais de Teste
 
-```bash
-cd frontend\web\biblioconecta
-npm install
+Utilize as seguintes credenciais para testar as diferentes permissões do sistema:
+
+| Perfil | Email | Senha |
+| :--- | :--- | :--- |
+| **Administrador** | `biblioconecta@mail.com` | `admin12345678` |
+| **Usuário Comum** | `usuario@biblioconecta.com` | `senha123` |
 
 ---
 
-## 6. Testes
+## 🔗 8. Links
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+| Tipo | Link |
+| :--- | :--- |
+| **Versão em Produção (Front)** | [Link para o Sistema (Vercel)](https://biblioconecta.vercel.app/) |
+| **Vídeo Demonstrativo** | [Link para o Vídeo no YouTube](https://youtu.be/QYD7ZxB94Cg) |
+| **Documentação da API (Swagger)** | [http://localhost:3333/api-docs/](http://localhost:3333/api-docs/) |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✅ 9. Validações e Evidências
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O projeto passou por uma etapa de validação rigorosa que garantiu a aderência aos requisitos e a qualidade da entrega.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Validações de Regras de Negócio**: Foram verificadas as regras críticas, como o limite de empréstimos por usuário, a prioridade de reservas e a disponibilidade de exemplares.
+* **Testes Unitários**: A maior parte da lógica de *backend* foi coberta por testes unitários, assegurando a consistência e a robustez da API.
+* **Evidências**: A documentação inclui capturas de tela e um vídeo demonstrativo, que comprovam a implementação funcional de todas as funcionalidades listadas.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👨‍💻 10. Contribuições da Equipe
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A seguir, detalhamos as responsabilidades e contribuições dos integrantes no desenvolvimento do projeto BiblioConecta:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Integrante | Matrícula | Principais Contribuições |
+| :--- | :--- | :--- |
+| **ANTÔNIO MIKAEL VASCONCELOS AGUIAR** | 2326335 | Desenvolvimento e manutenção do **Backend** (API REST), incluindo a lógica de negócio, e implementação dos **Testes Unitários** (com Vitest/Supertest) para garantir a consistência das rotas. |
+| **SANDY RODRIGUES DO NASCIMENTO** | 2326334 | Desenvolvimento do **Frontend** (Next.js/React), responsável pela interface do usuário, painel administrativo, consumo da API (Axios), gestão de estados e implementação do design (Tailwind CSS). |
+| **VITÓRIA DE OLIVEIRA ALMEIDA** | 2325332 | Atuação em **Validações** de requisitos, organização e coleta de **Evidências** do sistema (capturas de tela, vídeos). |
