@@ -40,8 +40,7 @@ export default function ReservationsPendingAdminPage() {
     try {
       const { data } = await api.get("/reservations/pending");
       setReservas(data);
-    } catch (error) {
-      console.error("Erro ao carregar reservas:", error);
+    } catch {
       Swal.fire("Erro!", "Não foi possível carregar as reservas pendentes.", "error");
     } finally {
       setLoading(false);
@@ -68,11 +67,10 @@ export default function ReservationsPendingAdminPage() {
 
       Swal.fire("Sucesso!", "Empréstimo criado.", "success");
       carregarReservas();
-    } catch (error) {
+    } catch {
       Swal.fire("Erro!", "Não foi possível aprovar a reserva.", "error");
     }
   }
-
 
   async function recusarReserva(id_reserva: number) {
     const confirm = await Swal.fire({
@@ -90,7 +88,7 @@ export default function ReservationsPendingAdminPage() {
       await api.delete(`/reservations/${id_reserva}`);
       Swal.fire("Reserva recusada!", "", "success");
       carregarReservas();
-    } catch (error) {
+    } catch {
       Swal.fire("Erro!", "Não foi possível recusar a reserva.", "error");
     }
   }
@@ -102,10 +100,11 @@ export default function ReservationsPendingAdminPage() {
   return (
     <div className="flex min-h-screen bg-[#f5f8ff]">
       <SideBar />
+
       <div className="flex-1">
         <NavBar />
 
-        <main className="ml-56 p-8">
+        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
           <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">
             Reservas Pendentes
           </h1>
@@ -115,8 +114,8 @@ export default function ReservationsPendingAdminPage() {
               <Loader2 className="animate-spin w-8 h-8 text-blue-500" />
             </div>
           ) : (
-            <div className="bg-white shadow-md rounded-xl overflow-hidden">
-              <table className="w-full text-left">
+            <div className="bg-white shadow-md rounded-xl overflow-x-auto w-full">
+              <table className="min-w-[800px] w-full text-left">
                 <thead className="bg-blue-600 text-white">
                   <tr>
                     <th className="py-3 px-4">Livro</th>
@@ -130,25 +129,22 @@ export default function ReservationsPendingAdminPage() {
 
                 <tbody>
                   {reservas.map((res) => (
-                    <tr key={res.id_reserva} className="border-b">
+                    <tr key={res.id_reserva} className="border-b hover:bg-gray-50">
                       <td className="p-3 text-black">{res.livro.titulo}</td>
 
-                      <td className="p-3 text-black">{res.exemplar.codigo_exemplar}</td>
-
                       <td className="p-3 text-black">
-                        {res.usuario.name}
+                        {res.exemplar.codigo_exemplar}
                       </td>
 
-                      <td className="p-3 text-black">
-                        {res.usuario.email}
-                      </td>
+                      <td className="p-3 text-black">{res.usuario.name}</td>
+
+                      <td className="p-3 text-black">{res.usuario.email}</td>
 
                       <td className="p-3 text-black">
                         {new Date(res.data_reserva).toLocaleDateString("pt-BR")}
                       </td>
 
-                      <td className="p-3 text-black text-center flex gap-2 justify-center">
-                        {/* Aprovar */}
+                      <td className="p-3 text-center flex gap-2 justify-center">
                         <button
                           onClick={() => aprovarReserva(res)}
                           className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg"

@@ -6,6 +6,7 @@ import SideBar from "../components/sideBar";
 import NavBar from "../components/navBar";
 import api from "../../api/axios";
 import Swal from "sweetalert2";
+
 import { Loader2 } from "lucide-react";
 
 export default function AdminCreateUser() {
@@ -58,13 +59,15 @@ export default function AdminCreateUser() {
       <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="ml-56 flex flex-col items-center justify-center py-10">
+        {/* Responsividade aplicada aqui */}
+        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 flex justify-center items-center">
           <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border">
             <h1 className="text-3xl font-bold text-blue-600 mb-8 text-center">
               Criar Usuário (Admin)
             </h1>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
               <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
                 <input
                   type="text"
@@ -77,7 +80,6 @@ export default function AdminCreateUser() {
                 />
               </div>
 
-              {/* Email */}
               <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
                 <input
                   type="email"
@@ -90,7 +92,6 @@ export default function AdminCreateUser() {
                 />
               </div>
 
-              {/* Senha */}
               <div className="flex items-center border border-gray-400 rounded-lg px-3 py-2 bg-white">
                 <input
                   type="password"

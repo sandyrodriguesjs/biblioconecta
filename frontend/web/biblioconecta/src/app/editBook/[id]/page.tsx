@@ -117,8 +117,8 @@ export default function EditBookPage() {
       <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="ml-56 p-8">
-          <h1 className="text-3xl font-bold text-blue-600 mb-8 text-center">
+        <main className="lg:ml-56 p-4 md:p-6 lg:p-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-blue-600 mb-6 md:mb-8 text-center">
             Editar Livro
           </h1>
 
@@ -129,44 +129,50 @@ export default function EditBookPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6 grid grid-cols-3 gap-6"
+              className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-4 md:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6"
             >
-              <div>
-                <div className="w-40 h-60 rounded-lg overflow-hidden bg-gray-200 shadow">
+              {/* Seção da capa */}
+              <div className="lg:col-span-1 flex flex-col items-center lg:items-start">
+                <div className="w-32 h-48 md:w-40 md:h-60 rounded-lg overflow-hidden bg-gray-200 shadow mx-auto lg:mx-0">
                   <img
                     src={capaPreview || "/default-book-cover.png"}
                     className="w-full h-full object-cover"
+                    alt="Capa do livro"
                   />
                 </div>
 
-                <label className="mt-4 block">
-                  <span className="cursor-pointer flex items-center gap-2 px-3 py-2 bg-blue-50 text-blue-700 border border-blue-300 rounded-lg hover:bg-blue-100">
-                    <Upload className="w-4 h-4" /> Alterar capa
-                  </span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleCapaChange}
-                    className="hidden"
-                  />
-                </label>
+                <div className="mt-4 flex flex-col items-center lg:items-start gap-2 w-full">
+                  <label className="block w-full">
+                    <span className="cursor-pointer flex items-center justify-center gap-2 px-3 py-2 bg-blue-50 text-blue-700 border border-blue-300 rounded-lg hover:bg-blue-100 text-sm md:text-base w-full">
+                      <Upload className="w-4 h-4" /> Alterar capa
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleCapaChange}
+                      className="hidden"
+                    />
+                  </label>
 
-                <button
-                  type="button"
-                  onClick={removerCapa}
-                  className="mt-2 text-sm text-red-600 hover:underline"
-                >
-                  Remover capa
-                </button>
+                  <button
+                    type="button"
+                    onClick={removerCapa}
+                    className="text-sm text-red-600 hover:underline"
+                  >
+                    Remover capa
+                  </button>
+                </div>
               </div>
 
-              <div className="col-span-2 grid grid-cols-2 gap-4">
-                <div className="col-span-2">
+              {/* Seção dos campos do formulário */}
+              <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
                   <label className="font-semibold text-black">Título</label>
                   <input
                     value={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2 text-black"
+                    className="w-full border rounded-lg px-3 py-2 text-black mt-1"
+                    required
                   />
                 </div>
 
@@ -175,7 +181,8 @@ export default function EditBookPage() {
                   <input
                     value={isbn}
                     onChange={(e) => setIsbn(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2 text-black"
+                    className="w-full border rounded-lg px-3 py-2 text-black mt-1"
+                    required
                   />
                 </div>
 
@@ -184,7 +191,8 @@ export default function EditBookPage() {
                   <input
                     value={autor}
                     onChange={(e) => setAutor(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2 text-black"
+                    className="w-full border rounded-lg px-3 py-2 text-black mt-1"
+                    required
                   />
                 </div>
 
@@ -193,7 +201,7 @@ export default function EditBookPage() {
                   <input
                     value={editora}
                     onChange={(e) => setEditora(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2 text-black"
+                    className="w-full border rounded-lg px-3 py-2 text-black mt-1"
                   />
                 </div>
 
@@ -202,31 +210,64 @@ export default function EditBookPage() {
                   <input
                     value={anoPublicacao}
                     onChange={(e) => setAnoPublicacao(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2 text-black"
+                    className="w-full border rounded-lg px-3 py-2 text-black mt-1"
+                    required
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="md:col-span-2">
                   <label className="font-semibold text-black">Sinopse</label>
                   <textarea
                     value={sinopse}
                     onChange={(e) => setSinopse(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2 h-32 text-black"
+                    className="w-full border rounded-lg px-3 py-2 h-32 text-black mt-1"
+                    required
                   />
                 </div>
 
-                <div className="col-span-2 flex justify-end gap-3">
+                {/* Campos adicionais que estavam faltando */}
+                <div>
+                  <label className="font-semibold text-black">Categoria</label>
+                  <input
+                    value={categoria}
+                    onChange={(e) => setCategoria(e.target.value)}
+                    className="w-full border rounded-lg px-3 py-2 text-black mt-1"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-semibold text-black">Idioma</label>
+                  <input
+                    value={idioma}
+                    onChange={(e) => setIdioma(e.target.value)}
+                    className="w-full border rounded-lg px-3 py-2 text-black mt-1"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="font-semibold text-black">Tags</label>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {tags.map((tag, index) => (
+                      <div key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                        {tag}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Botões de ação */}
+                <div className="md:col-span-2 flex flex-col sm:flex-row justify-end gap-3 mt-4">
                   <button
                     type="button"
                     onClick={() => router.back()}
-                    className="px-4 py-2 border rounded-lg"
+                    className="px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors order-2 sm:order-1"
                   >
                     Cancelar
                   </button>
 
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors order-1 sm:order-2"
                   >
                     Salvar alterações
                   </button>

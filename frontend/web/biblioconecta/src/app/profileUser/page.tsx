@@ -45,9 +45,7 @@ export default function PerfilUsuarioPage() {
           dataLeitura: item.data_retirada,
         }))
       );
-
-    } catch (error) {
-      console.error("Erro ao carregar usuário:", error);
+    } catch {
       Swal.fire({
         icon: "error",
         title: "Erro ao carregar dados",
@@ -66,8 +64,7 @@ export default function PerfilUsuarioPage() {
   const formatarData = (data: string): string =>
     new Date(data).toLocaleDateString("pt-BR");
 
-  const obterInicial = (nome: string): string =>
-    nome.charAt(0).toUpperCase();
+  const obterInicial = (nome: string): string => nome.charAt(0).toUpperCase();
 
   const handleFotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -95,9 +92,7 @@ export default function PerfilUsuarioPage() {
         timer: 1300,
         showConfirmButton: false,
       });
-
-    } catch (err) {
-      console.error("Erro ao atualizar foto:", err);
+    } catch {
       Swal.fire({
         icon: "error",
         title: "Erro ao enviar foto",
@@ -135,9 +130,7 @@ export default function PerfilUsuarioPage() {
         timer: 1200,
         showConfirmButton: false,
       });
-
-    } catch (err) {
-      console.error("Erro ao remover foto:", err);
+    } catch {
       Swal.fire({
         icon: "error",
         title: "Erro ao remover foto",
@@ -148,15 +141,14 @@ export default function PerfilUsuarioPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#f5f8ff] flex">
-      <div className="fixed top-0 left-0 z-50">
-        <SideBar />
-      </div>
+    <div className="flex min-h-screen bg-[#f5f8ff]">
+      <SideBar />
 
-      <div className="flex-1 flex flex-col ml-20">
+      <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="ml-56 p-8 flex-1">
+        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+
           <h1 className="text-3xl font-bold text-blue-600 text-center mb-10">
             Perfil do Usuário
           </h1>
@@ -168,7 +160,7 @@ export default function PerfilUsuarioPage() {
           ) : usuario ? (
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-              <div className="bg-white p-6 shadow-md rounded-xl flex flex-col items-center">
+              <div className="bg-white p-6 shadow-md rounded-xl flex flex-col items-center w-full">
 
                 <div className="relative mb-4">
                   {usuario.foto || preview ? (
@@ -186,7 +178,7 @@ export default function PerfilUsuarioPage() {
                     <button
                       onClick={() => inputRef.current?.click()}
                       disabled={atualizando}
-                      className="p-2 bg-blue-500 text-white rounded-full shadow hover:bg-blue-600"
+                      className="p-2 bg-blue-500 text-white rounded-full shadow"
                     >
                       <Camera className="w-4 h-4" />
                     </button>
@@ -195,7 +187,7 @@ export default function PerfilUsuarioPage() {
                       <button
                         onClick={handleRemoverFoto}
                         disabled={atualizando}
-                        className="p-2 bg-red-500 text-white rounded-full shadow hover:bg-red-600"
+                        className="p-2 bg-red-500 text-white rounded-full shadow"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -215,7 +207,7 @@ export default function PerfilUsuarioPage() {
                 <p className="text-black">{usuario.email}</p>
               </div>
 
-              <div className="col-span-2 bg-white p-6 rounded-xl shadow-md">
+              <div className="col-span-2 bg-white p-6 rounded-xl shadow-md w-full">
                 <h2 className="text-2xl font-semibold mb-6 text-black">
                   Histórico de Leitura
                 </h2>

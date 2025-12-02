@@ -105,7 +105,9 @@ export default function CreateBookPage() {
       <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="ml-56 p-8">
+        {/* RESPONSIVIDADE APLICADA AQUI */}
+        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+
           <h1 className="text-3xl font-bold text-blue-600 mb-8 text-center">
             Cadastrar Livro
           </h1>
@@ -114,8 +116,10 @@ export default function CreateBookPage() {
             onSubmit={handleSubmit}
             className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6 grid grid-cols-1 md:grid-cols-3 gap-6"
           >
+
             <div className="md:col-span-1">
               <div className="bg-gray-50 rounded-xl border border-gray-200 p-4 flex flex-col items-center">
+
                 <div className="w-40 h-60 rounded-lg overflow-hidden bg-gray-200 shadow flex items-center justify-center">
                   {capaPreview ? (
                     <img
@@ -161,6 +165,7 @@ export default function CreateBookPage() {
             </div>
 
             <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">ISBN *</label>
                 <input
@@ -168,7 +173,6 @@ export default function CreateBookPage() {
                   value={isbn}
                   onChange={(e) => setIsbn(e.target.value)}
                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="9781234567890"
                 />
               </div>
 
@@ -179,7 +183,6 @@ export default function CreateBookPage() {
                   value={titulo}
                   onChange={(e) => setTitulo(e.target.value)}
                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Digite o título do livro"
                 />
               </div>
 
@@ -190,7 +193,6 @@ export default function CreateBookPage() {
                   value={autor}
                   onChange={(e) => setAutor(e.target.value)}
                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Nome do autor"
                 />
               </div>
 
@@ -201,7 +203,6 @@ export default function CreateBookPage() {
                   value={editora}
                   onChange={(e) => setEditora(e.target.value)}
                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Nome da editora"
                 />
               </div>
 
@@ -214,7 +215,6 @@ export default function CreateBookPage() {
                   value={anoPublicacao}
                   onChange={(e) => setAnoPublicacao(e.target.value)}
                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="2020"
                 />
               </div>
 
@@ -225,7 +225,6 @@ export default function CreateBookPage() {
                   value={categoria}
                   onChange={(e) => setCategoria(e.target.value)}
                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Ex.: Romance, Fantasia, Técnico..."
                 />
               </div>
 
@@ -236,15 +235,14 @@ export default function CreateBookPage() {
                   onChange={(e) => setSinopse(e.target.value)}
                   rows={4}
                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Escreva uma breve sinopse do livro..."
                 />
               </div>
 
-              <div className="md:col-span-2 mt-2 flex gap-3 justify-end">
+              <div className="md:col-span-2 mt-2 flex flex-col sm:flex-row gap-3 justify-end">
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 w-full sm:w-auto"
                 >
                   Cancelar
                 </button>
@@ -252,7 +250,7 @@ export default function CreateBookPage() {
                 <button
                   type="submit"
                   disabled={enviando}
-                  className={`px-5 py-2 rounded-lg text-white font-semibold flex items-center gap-2 ${
+                  className={`px-5 py-2 rounded-lg text-white font-semibold flex items-center justify-center gap-2 w-full sm:w-auto ${
                     enviando
                       ? "bg-blue-400 cursor-not-allowed"
                       : "bg-blue-600 hover:bg-blue-700"
@@ -262,6 +260,7 @@ export default function CreateBookPage() {
                   Cadastrar
                 </button>
               </div>
+
             </div>
           </form>
         </main>

@@ -29,8 +29,7 @@ export default function ListBookPage() {
       setCarregando(true);
       const response = await api.get("/livros");
       setLivros(response.data);
-    } catch (err) {
-      console.error(err);
+    } catch {
       setErro("Erro ao carregar lista de livros.");
     } finally {
       setCarregando(false);
@@ -67,8 +66,7 @@ export default function ListBookPage() {
       await api.delete(`/livros/${livroParaExcluir.id_livro}`);
       setModalOpen(false);
       carregarLivros();
-    } catch (err) {
-      console.error(err);
+    } catch {
       alert("Erro ao excluir o livro.");
     }
   }
@@ -80,8 +78,8 @@ export default function ListBookPage() {
       <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="ml-56 p-8">
-          <div className="flex justify-between items-center mb-8">
+        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
             <h1 className="text-3xl font-bold text-blue-600">Gestão de Acervo</h1>
 
             <button
@@ -112,8 +110,8 @@ export default function ListBookPage() {
               <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
             </div>
           ) : (
-            <div className="bg-white shadow-md rounded-xl overflow-hidden">
-              <table className="w-full text-left">
+            <div className="bg-white shadow-md rounded-xl overflow-x-auto w-full">
+              <table className="min-w-[800px] w-full text-left">
                 <thead className="bg-blue-600 text-white">
                   <tr>
                     <th className="py-3 px-4">Capa</th>
@@ -155,7 +153,6 @@ export default function ListBookPage() {
                             <button
                               onClick={() => abrirModalInfo(livro)}
                               className="p-2 bg-blue-100 hover:bg-blue-200 rounded-lg"
-                              title="Ver detalhes"
                             >
                               <BookOpen className="w-5 h-5 text-blue-700" />
                             </button>
@@ -163,7 +160,6 @@ export default function ListBookPage() {
                             <button
                               onClick={() => router.push(`/editBook/${livro.id_livro}`)}
                               className="p-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg"
-                              title="Editar"
                             >
                               <Pencil className="w-5 h-5 text-yellow-700" />
                             </button>
@@ -171,7 +167,6 @@ export default function ListBookPage() {
                             <button
                               onClick={() => abrirModal(livro)}
                               className="p-2 bg-red-100 hover:bg-red-200 rounded-lg"
-                              title="Excluir"
                             >
                               <Trash2 className="w-5 h-5 text-red-700" />
                             </button>

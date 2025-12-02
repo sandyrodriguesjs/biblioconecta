@@ -32,8 +32,7 @@ export default function UserAdminPage() {
             setCarregando(true);
             const response = await api.get("/usuarios");
             setUsuarios(response.data);
-        } catch (err) {
-            console.error(err);
+        } catch {
             setErro("Erro ao carregar usuários.");
         } finally {
             setCarregando(false);
@@ -76,7 +75,7 @@ export default function UserAdminPage() {
             await api.delete(`/usuarios/${id}`);
             Swal.fire("Deletado!", "O usuário foi excluído.", "success");
             carregarUsuarios();
-        } catch (err) {
+        } catch {
             Swal.fire("Erro!", "Não foi possível excluir o usuário.", "error");
         }
     }
@@ -99,7 +98,7 @@ export default function UserAdminPage() {
             await api.put(`/usuarios/${id}/block`);
             Swal.fire("Bloqueado!", "O usuário foi bloqueado.", "success");
             carregarUsuarios();
-        } catch (err) {
+        } catch {
             Swal.fire("Erro!", "Não foi possível bloquear o usuário.", "error");
         }
     }
@@ -112,7 +111,7 @@ export default function UserAdminPage() {
         const diff = prevista.getTime() - hoje.getTime();
         const dias = diff / (1000 * 3600 * 24);
 
-        if (dias < 0) return "text-red-600 font-bold";      
+        if (dias < 0) return "text-red-600 font-bold";
         if (dias <= 3) return "text-yellow-600 font-semibold";
 
         return "text-green-700 font-medium";
@@ -130,8 +129,10 @@ export default function UserAdminPage() {
             <div className="flex-1 flex flex-col">
                 <NavBar />
 
-                <main className="ml-56 p-8">
-                    <div className="flex justify-between items-center mb-8">
+                {/* AQUI FOI A ADAPTAÇÃO PARA RESPONSIVIDADE */}
+                <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                         <h1 className="text-3xl font-bold text-blue-600">
                             Gerenciamento de Usuários
                         </h1>
@@ -145,7 +146,7 @@ export default function UserAdminPage() {
                         </button>
                     </div>
 
-                    <div className="max-w-md mb-6">
+                    <div className="max-w-md mb-6 w-full">
                         <input
                             value={busca}
                             onChange={(e) => setBusca(e.target.value)}
@@ -165,8 +166,8 @@ export default function UserAdminPage() {
                             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
                         </div>
                     ) : (
-                        <div className="bg-white shadow-md rounded-xl overflow-hidden">
-                            <table className="w-full text-left">
+                        <div className="bg-white shadow-md rounded-xl overflow-x-auto w-full">
+                            <table className="min-w-[900px] w-full text-left">
                                 <thead className="bg-blue-600 text-white">
                                     <tr>
                                         <th className="py-3 px-4">Nome</th>

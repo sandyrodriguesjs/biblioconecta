@@ -27,8 +27,7 @@ export default function HomePage() {
         setLoading(true);
         const response = await api.get("/livros");
         setLivros(response.data);
-      } catch (error: any) {
-        console.error("Erro ao buscar livros:", error);
+      } catch {
         setErro("Erro ao carregar os livros. Tente novamente mais tarde.");
       } finally {
         setLoading(false);
@@ -52,16 +51,17 @@ export default function HomePage() {
   });
 
   return (
-    <div className="flex min-h-screen bg-[#f5f8ff]">
+    <div className="flex min-h-screen bg-[#f5f8ff] overflow-hidden">
       <SideBar />
 
-      <div className="flex-1 flex flex-col overflow-y-auto max-h-screen">
+      <div className="flex-1 flex flex-col max-h-screen overflow-y-auto">
         <NavBar />
 
-        <main className="ml-56 p-8 space-y-10">
+        <main className="p-4 sm:p-6 md:p-8 space-y-10 pl-0 md:pl-56 transition-all duration-300">
+
           <section className="relative w-full overflow-hidden rounded-2xl shadow-lg">
             <motion.div
-              className="flex gap-4 animate-scroll-x"
+              className="flex gap-4 overflow-x-hidden"
               initial={{ x: 0 }}
               animate={{ x: ["0%", "-50%"] }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
@@ -83,7 +83,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <div className="flex justify-between items-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
             <input
               type="text"
               placeholder="Buscar por título, autor ou ISBN..."
@@ -91,13 +91,13 @@ export default function HomePage() {
               onChange={(e) => setTermo(e.target.value)}
               className="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">
+            <button className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">
               <Filter className="w-5 h-5" />
               Filtros
             </button>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 px-2">
             {categorias.map((categoria) => (
               <button
                 key={categoria}

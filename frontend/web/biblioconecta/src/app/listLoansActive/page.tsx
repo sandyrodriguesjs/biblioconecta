@@ -75,14 +75,15 @@ export default function ActiveLoansPage() {
         }
     }
 
-
     return (
         <div className="flex min-h-screen bg-[#f5f8ff]">
             <SideBar />
+
             <div className="flex-1">
                 <NavBar />
 
-                <main className="ml-56 p-8">
+                <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+
                     <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">
                         Empréstimos Ativos
                     </h1>
@@ -92,8 +93,8 @@ export default function ActiveLoansPage() {
                             <Loader2 className="animate-spin w-8 h-8 text-blue-500" />
                         </div>
                     ) : (
-                        <div className="bg-white shadow-md rounded-xl overflow-hidden">
-                            <table className="w-full text-left">
+                        <div className="bg-white shadow-md rounded-xl overflow-hidden overflow-x-auto">
+                            <table className="w-full text-left min-w-[750px]">
                                 <thead className="bg-blue-600 text-white">
                                     <tr>
                                         <th className="py-3 px-4">Usuário</th>
