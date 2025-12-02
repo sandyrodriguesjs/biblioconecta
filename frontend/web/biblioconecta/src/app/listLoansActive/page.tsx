@@ -76,13 +76,23 @@ export default function ActiveLoansPage() {
     }
 
     return (
-        <div className="flex min-h-screen bg-[#f5f8ff]">
+        <div className="flex min-h-screen bg-[#f5f8ff] relative">
             <SideBar />
 
             <div className="flex-1">
                 <NavBar />
 
-                <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+                <main
+                    className="
+                        p-4 sm:p-6 md:p-8
+                        pl-0 md:pl-56
+                        transition-all duration-300
+                        bg-[#f5f8ff]
+                        min-h-screen
+                        w-full
+                        overflow-x-auto
+                    "
+                >
 
                     <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">
                         Empréstimos Ativos
