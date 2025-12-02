@@ -42,7 +42,6 @@ export default function BookDetailsPage() {
         const response = await api.get(`/livros/${bookId}`);
         setBook(response.data);
       } catch (error) {
-        console.error(error);
         Swal.fire({
           icon: "error",
           title: "Erro ao carregar",
@@ -74,8 +73,6 @@ export default function BookDetailsPage() {
 
       setTimeout(() => router.push("/homePage"), 1500);
     } catch (error: any) {
-      console.error(error);
-
       Swal.fire({
         icon: "error",
         title: "Erro ao reservar",
@@ -88,12 +85,23 @@ export default function BookDetailsPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#f5f8ff]">
+    <div className="flex min-h-screen bg-[#f5f8ff] relative">
       <SideBar />
       <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="ml-56 p-8">
+        <main
+          className="
+            p-4 sm:p-6 md:p-8
+            pl-0 md:pl-56
+            transition-all duration-300
+            bg-[#f5f8ff]
+            min-h-screen
+            w-full
+            overflow-x-auto
+            flex flex-col items-center
+          "
+        >
           <h1 className="text-3xl font-bold text-blue-600 mb-10 text-center">
             Detalhes do Livro
           </h1>
@@ -103,14 +111,14 @@ export default function BookDetailsPage() {
               <Loader2 className="animate-spin w-8 h-8 text-blue-500" />
             </div>
           ) : book ? (
-            <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6 flex flex-col md:flex-row gap-8">
+            <div className="w-full max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6 flex flex-col md:flex-row items-center md:items-start gap-8">
               <img
                 src={book.capa_url ?? "/default-book-cover.png"}
                 alt={book.titulo}
-                className="w-48 h-72 object-cover rounded-lg shadow-md"
+                className="w-48 h-72 object-cover rounded-lg shadow-md mx-auto"
               />
 
-              <div className="flex-1">
+              <div className="flex-1 text-center md:text-left">
                 <h2 className="text-3xl font-bold mb-2 text-blue-600">
                   {book.titulo}
                 </h2>
