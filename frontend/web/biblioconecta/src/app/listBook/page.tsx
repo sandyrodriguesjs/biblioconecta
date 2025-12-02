@@ -72,13 +72,23 @@ export default function ListBookPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#f5f8ff]">
+    <div className="flex min-h-screen bg-[#f5f8ff] relative">
       <SideBar />
 
       <div className="flex-1 flex flex-col">
         <NavBar />
 
-        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+        <main
+          className="
+            p-4 sm:p-6 md:p-8 
+            pl-0 md:pl-56 
+            transition-all duration-300
+            bg-[#f5f8ff]
+            min-h-screen 
+            w-full 
+            overflow-x-auto
+          "
+        >
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
             <h1 className="text-3xl font-bold text-blue-600">Gestão de Acervo</h1>
 
