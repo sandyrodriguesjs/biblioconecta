@@ -157,7 +157,7 @@ Utilize as seguintes credenciais para testar as diferentes permissões do sistem
 | **Vídeo Demonstrativo** | [Link para o Vídeo no YouTube](https://youtu.be/QYD7ZxB94Cg) |
 | **Documentação da API (Swagger)** | [http://localhost:3333/api-docs/](http://localhost:3333/api-docs/) |
 
-## ✅ Validações e Evidências
+## ✅ 9. Validações e Evidências
 
 O projeto passou por uma etapa de validação rigorosa que garantiu a aderência aos requisitos e a qualidade da entrega.
 
@@ -168,7 +168,7 @@ O projeto passou por uma etapa de validação rigorosa que garantiu a aderência
 ---
 
 
-## 👨‍💻 Contribuições da Equipe
+## 👨‍💻 10. Contribuições da Equipe
 
 A seguir, detalhamos as responsabilidades e contribuições dos integrantes no desenvolvimento do projeto BiblioConecta:
 
