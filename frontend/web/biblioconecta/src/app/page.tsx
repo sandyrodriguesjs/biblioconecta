@@ -19,11 +19,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await api.post("/login", {
-        email,
-        password,
-      });
-
+      const response = await api.post("/login", { email, password });
       const { token } = response.data;
 
       localStorage.setItem("token", token);
@@ -35,19 +31,13 @@ export default function Login() {
         confirmButtonColor: "#3b82f6",
         timer: 1400,
         timerProgressBar: true,
-      }).then(() => {
-        router.push("/homePage");
-      });
+      }).then(() => router.push("/homePage"));
 
     } catch (err: any) {
-      console.error(err);
-
       Swal.fire({
         icon: "error",
         title: "Falha ao entrar",
-        text:
-          err.response?.data?.erro ||
-          "Credenciais inválidas. Tente novamente.",
+        text: err.response?.data?.erro || "Credenciais inválidas. Tente novamente.",
         confirmButtonColor: "#d33",
       });
     } finally {
@@ -56,7 +46,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f3f8fb] px-6">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f3f8fb] px-4 sm:px-6">
       <h1 className="text-4xl font-extrabold mb-10 text-center text-black">
         Bem-vindo!
       </h1>
@@ -96,7 +86,7 @@ export default function Login() {
         >
           {loading ? "Entrando..." : "Entrar →"}
         </button>
-        
+
         <Link href="/registerPage" className="w-full">
           <button
             type="button"

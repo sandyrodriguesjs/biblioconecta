@@ -19,40 +19,28 @@ export default function Register() {
     setLoading(true);
 
     try {
-      await api.post("/register", {
-        name,
-        email,
-        password,
-      });
+      await api.post("/register", { name, email, password });
 
       Swal.fire({
         icon: "success",
         title: "Cadastro realizado!",
         text: "Seu usuário foi criado com sucesso.",
         confirmButtonColor: "#0ea5e9",
-      }).then(() => {
-        router.push("/");
-      });
-
+      }).then(() => router.push("/"));
     } catch (err: any) {
-      console.error(err);
-
       Swal.fire({
         icon: "error",
         title: "Erro ao cadastrar",
-        text:
-          err.response?.data?.erro ||
-          "Não foi possível criar a conta. Tente novamente.",
+        text: err.response?.data?.erro || "Não foi possível criar a conta. Tente novamente.",
         confirmButtonColor: "#d33",
       });
-
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f3f8fb] px-6">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f3f8fb] px-4 sm:px-6">
       <h1 className="text-4xl font-extrabold mb-10 text-center text-black">
         Cadastre-se!
       </h1>
