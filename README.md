@@ -112,7 +112,7 @@ Para rodar o projeto localmente, siga os passos abaixo. É necessário ter o **N
     cd backend
     npm install
     ```
-2.  Crie um arquivo `.env` baseado no `.env.example` e configure a variável `DATABASE_URL` (apontando para uma instância do PostgreSQL).
+2.  Crie um arquivo `.env` baseado no `.env.example` e configure a variável `DATABASE_URL` e `JWT_SECRET` (apontando para uma instância do PostgreSQL).
 3.  Execute as migrations do banco de dados (o Prisma fará isso para você):
     ```bash
     npx prisma migrate dev
@@ -130,11 +130,7 @@ Para rodar o projeto localmente, siga os passos abaixo. É necessário ter o **N
     cd frontend/web/biblioconecta
     npm install
     ```
-2.  Crie um arquivo `.env.local` baseado no `.env.example` e configure a variável `NEXT_PUBLIC_API_URL` apontando para o seu backend:
-    ```bash
-    NEXT_PUBLIC_API_URL=http://localhost:3333
-    ```
-3.  Inicie o cliente web:
+2.  Inicie o cliente web:
     ```bash
     npm run dev
     ```
