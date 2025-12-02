@@ -160,3 +160,13 @@ Utilize as seguintes credenciais para testar as diferentes permissões do sistem
 | **Versão em Produção (Front)** | [Link para o Sistema (Vercel)](https://biblioconecta.vercel.app/) |
 | **Vídeo Demonstrativo** | [Link para o Vídeo no YouTube](https://youtu.be/QYD7ZxB94Cg) |
 | **Documentação da API (Swagger)** | [http://localhost:3333/api-docs/](http://localhost:3333/api-docs/) |
+
+## 👨‍💻 Contribuições da Equipe
+
+A seguir, detalhamos as responsabilidades e contribuições dos integrantes no desenvolvimento do projeto BiblioConecta:
+
+| Integrante | Matrícula | Principais Contribuições |
+| :--- | :--- | :--- |
+| **ANTÔNIO MIKAEL VASCONCELOS AGUIAR** | 2326335 | Desenvolvimento e manutenção do **Backend** (API REST), incluindo a lógica de negócio, e implementação dos **Testes Unitários** (com Vitest/Supertest) para garantir a consistência das rotas. |
+| **SANDY RODRIGUES DO NASCIMENTO** | 2326334 | Desenvolvimento do **Frontend** (Next.js/React), responsável pela interface do usuário, painel administrativo, consumo da API (Axios), gestão de estados e implementação do design (Tailwind CSS). |
+| **VITÓRIA DE OLIVEIRA ALMEIDA** | 2325332 | Atuação em **Validações** de requisitos, organização e coleta de **Evidências** do sistema (capturas de tela, vídeos). |
