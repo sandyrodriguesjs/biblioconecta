@@ -144,10 +144,10 @@ export default function PerfilUsuarioPage() {
     <div className="flex min-h-screen bg-[#f5f8ff]">
       <SideBar />
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col items-center">
         <NavBar />
 
-        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 transition-all duration-300">
+        <main className="p-4 sm:p-6 md:p-8 pl-0 md:pl-56 w-full transition-all duration-300 flex flex-col items-center">
 
           <h1 className="text-3xl font-bold text-blue-600 text-center mb-10">
             Perfil do Usuário
@@ -158,10 +158,9 @@ export default function PerfilUsuarioPage() {
               Carregando informações...
             </div>
           ) : usuario ? (
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 place-items-center w-full">
 
-              <div className="bg-white p-6 shadow-md rounded-xl flex flex-col items-center w-full">
-
+              <div className="bg-white p-6 shadow-md rounded-xl flex flex-col items-center w-full max-w-sm mx-auto">
                 <div className="relative mb-4">
                   {usuario.foto || preview ? (
                     <img
@@ -207,8 +206,8 @@ export default function PerfilUsuarioPage() {
                 <p className="text-black">{usuario.email}</p>
               </div>
 
-              <div className="col-span-2 bg-white p-6 rounded-xl shadow-md w-full">
-                <h2 className="text-2xl font-semibold mb-6 text-black">
+              <div className="col-span-2 bg-white p-6 rounded-xl shadow-md w-full max-w-2xl mx-auto">
+                <h2 className="text-2xl font-semibold mb-6 text-black text-center lg:text-left">
                   Histórico de Leitura
                 </h2>
 
