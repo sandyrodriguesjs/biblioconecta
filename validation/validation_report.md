@@ -152,6 +152,11 @@ Para complementar a validação técnica, também foram realizadas entrevistas c
 
 ---
 
+
+<p align="center">
+  <img src="./evidence/apresentacao2.jpeg" width="650" alt="Imagem 1. Momento de validação com bibliotecárias">
+</p>
+
 ## 🧍‍♀️ Usuária 1 — **Rayza Alves Marques**
 
 - **Perfil:** Moradora do Condomínio Smille Village  
