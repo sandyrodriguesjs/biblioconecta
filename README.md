@@ -157,6 +157,17 @@ Utilize as seguintes credenciais para testar as diferentes permissões do sistem
 | **Vídeo Demonstrativo** | [Link para o Vídeo no YouTube](https://youtu.be/QYD7ZxB94Cg) |
 | **Documentação da API (Swagger)** | [http://localhost:3333/api-docs/](http://localhost:3333/api-docs/) |
 
+## ✅ Validações e Evidências
+
+O projeto passou por uma etapa de validação rigorosa que garantiu a aderência aos requisitos e a qualidade da entrega.
+
+* **Validações de Regras de Negócio**: Foram verificadas as regras críticas, como o limite de empréstimos por usuário, a prioridade de reservas e a disponibilidade de exemplares.
+* **Testes Unitários**: A maior parte da lógica de *backend* foi coberta por testes unitários, assegurando a consistência e a robustez da API.
+* **Evidências**: A documentação inclui capturas de tela e um vídeo demonstrativo, que comprovam a implementação funcional de todas as funcionalidades listadas.
+
+---
+
+
 ## 👨‍💻 Contribuições da Equipe
 
 A seguir, detalhamos as responsabilidades e contribuições dos integrantes no desenvolvimento do projeto BiblioConecta:
